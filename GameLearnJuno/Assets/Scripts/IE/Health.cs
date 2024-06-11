@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(UIHealth))]
+[RequireComponent(typeof(HealthBar))]
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth;
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth;
 
-    public int HealthSv
+    public float HealthSv //не знаю как правильно именовать свойства, поэтому окончание Sv
     {
         get { return _health; }
+    }
+    public float MaxHealthSv
+    {
+        get { return _maxHealth; }
     }
 
     public event UnityAction ChangetHealth;
@@ -38,5 +43,10 @@ public class Health : MonoBehaviour
         {
             _health = _maxHealth;
         }
+    }
+
+    private void OnMouseDown()
+    {
+        TakeDamage(1);
     }
 }
