@@ -1,32 +1,36 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-[RequireComponent(typeof(Health))]
+
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
 
-    [SerializeField] private Health _health;
+    private Health _health;
 
-    private void Start()
+    public void Initialize(Health health)
     {
-        _health = GetComponent<Health>();
-        _health.ChangetHealth += HealthUpdate;
+        if (health == null)
+            throw new NullReferenceException();
+
+        _health = health;
+
     }
 
-    private void OnEnable() // не подписывается на событие, выходит ошибка 
+    public void Enable()
     {
-        //_health.ChangetHealth += HealthUpdate;
+        _health.Changed += HealthUpdate;
     }
 
-    private void OnDisable()
+    public void Disable()
     {
-        _health.ChangetHealth -= HealthUpdate;
+        _health.Changed -= HealthUpdate;
     }
 
     private void HealthUpdate()
     {
-        _slider.value = _health.HealthSv / _health.MaxHealthSv;
+        _slider.value = _health.CurrentHealth/ _health.MaxHealth;
     }
 }

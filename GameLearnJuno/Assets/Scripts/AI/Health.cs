@@ -1,52 +1,42 @@
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+using System;
 
-[RequireComponent(typeof(HealthBar))]
-public class Health : MonoBehaviour
+public class Health
 {
-    [SerializeField] private float _health;
-    [SerializeField] private float _maxHealth;
+    public Health(float maxHealth)
+    {
+        if (maxHealth < 0)
+            throw new ArgumentOutOfRangeException();
 
-    public float HealthSv //не знаю как правильно именовать свойства, поэтому окончание Sv
-    {
-        get { return _health; }
-    }
-    public float MaxHealthSv
-    {
-        get { return _maxHealth; }
+        CurrentHealth = maxHealth;
+        MaxHealth = maxHealth;
     }
 
-    public event UnityAction ChangetHealth;
+    public float CurrentHealth { get; private set; }
+    public float MaxHealth { get; private set; }
+
+    public event Action Changed;
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
-        ChangetHealth?.Invoke();
-        if (_health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        if (damage < 0)
+            throw new ArgumentOutOfRangeException();
+
+        CurrentHealth -= damage;
+
+        Changed?.Invoke();
+
+        Math.Clamp(CurrentHealth,0, MaxHealth);
     }
 
-    public void AddHealth(int health)
+    public void AddHealth(int value)
     {
-        if (_health < _maxHealth)
-        {
-            _health += health;
-            if (_health > _maxHealth)
-            {
-                _health = _maxHealth;
-            }
-        }
-        else
-        {
-            _health = _maxHealth;
-        }
-    }
+        if (value < 0)
+            throw new ArgumentOutOfRangeException();
 
-    private void OnMouseDown()
-    {
-        TakeDamage(1);
+        CurrentHealth += value;
+
+        Math.Clamp(CurrentHealth,0,MaxHealth);
+
+        Changed?.Invoke();
     }
 }
