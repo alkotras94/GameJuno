@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Moving : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1;
+    [SerializeField] private float _speed = 4;
 
     private Vector3 _target;
+
+    private void Start()
+    {
+        _target = new Vector3(transform.position.x, transform.position.y,0);
+    }
 
     private void Update()
     {
@@ -26,7 +31,7 @@ public class Moving : MonoBehaviour
         }
         else
         {
-            _speed = 1;
+            _speed = 4;
             target.z = 0;
             transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * _speed);
             
