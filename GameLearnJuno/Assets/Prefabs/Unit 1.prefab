@@ -518,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _healthBar: {fileID: 4359803204270570328}
+  _selectedGameObject: {fileID: 4126843952439078627}
 --- !u!61 &1133068134371928054
 BoxCollider2D:
   m_ObjectHideFlags: 0

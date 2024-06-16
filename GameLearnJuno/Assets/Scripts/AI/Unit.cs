@@ -1,12 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Moving))]
 public class Unit : MonoBehaviour
 {
     [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private GameObject _selectedGameObject;
 
-    private GameObject _selectedGameObject;
 
     private Health _health;
 
@@ -14,13 +13,17 @@ public class Unit : MonoBehaviour
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
-        _selectedGameObject = transform.Find("Selected").gameObject;
-        SetSelctedVisible(false);
+        DisableSelected();
     }
 
-    public void SetSelctedVisible(bool visible)
+    public void EnableSelected()
     {
-        _selectedGameObject.SetActive(visible);
+        _selectedGameObject.SetActive(true);
+    }
+
+    public void DisableSelected()
+    {
+        _selectedGameObject.SetActive(false);
     }
 
     private void OnEnable()

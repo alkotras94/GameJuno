@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moving : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 4;
+    [SerializeField] private float _stop = 0;
 
     private Vector3 _target;
 
@@ -27,14 +28,12 @@ public class Moving : MonoBehaviour
     {
         if (target == null)
         {
-            _speed = 0;
+            _speed = _stop;
         }
         else
         {
-            _speed = 4;
+            _speed = _speed;
             target.z = 0;
-            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * _speed);
-            
-        }
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * _speed);        }
     }
 }

@@ -1,58 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(DrawingSelectionBox))]
 public class GameRTSController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private Transform _selectionAreaTransform;
-
+ 
     private Vector3 _startPosition;
     private Vector3 _endPosition;
     private List<Unit> _selectedUnitRtsList;
+    private DrawingSelectionBox _drawingSelectionBox;
 
     private void Awake()
     {
         _selectedUnitRtsList = new List<Unit>();
-        _selectionAreaTransform.gameObject.SetActive(false);
+        _drawingSelectionBox = GetComponent<DrawingSelectionBox>();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 currenmousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        _drawingSelectionBox.OnMousedStart += AddStartVector;
+        _drawingSelectionBox.OnMousedEnd += AddEndVector;
+    }
 
-            Vector3 lowerLeft = new Vector3(
-                    Mathf.Min(_startPosition.x, currenmousePosition.x),
-                    Mathf.Min(_startPosition.y, currenmousePosition.y)
-                );
+    private void OnDisable()
+    {
+        _drawingSelectionBox.OnMousedStart -= AddStartVector;
+        _drawingSelectionBox.OnMousedEnd -= AddEndVector;
+    }
 
-            Vector3 upperRight = new Vector3(
-                    Mathf.Max(_startPosition.x, currenmousePosition.x),
-                    Mathf.Max(_startPosition.y, currenmousePosition.y)
-                );
-
-            _selectionAreaTransform.position = lowerLeft;
-            _selectionAreaTransform.localScale = upperRight - lowerLeft;
-        }
-
-        _endPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
-        {
-            _selectionAreaTransform.gameObject.SetActive(true);
-            _startPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-            //Debug.Log(_startPosition);
-        }
-
+    private void Update()
+    {
         if (Input.GetMouseButtonUp(0))
         {
-            _selectionAreaTransform.gameObject.SetActive(false);
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(_startPosition, _endPosition);
 
             foreach (Unit unit in _selectedUnitRtsList)
             {
-                unit.SetSelctedVisible(false);
+                unit.DisableSelected();
             }
 
             _selectedUnitRtsList.Clear();
@@ -64,7 +49,7 @@ public class GameRTSController : MonoBehaviour
                 if (unit != null)
                 {
                     _selectedUnitRtsList.Add(unit);
-                    unit.SetSelctedVisible(true);
+                    unit.EnableSelected();
                 }
 
                 Debug.Log(_selectedUnitRtsList.Count);
@@ -76,8 +61,18 @@ public class GameRTSController : MonoBehaviour
             Vector3 moveToPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             foreach (Unit unit in _selectedUnitRtsList)
             {
-                unit.gameObject.GetComponent<Moving>().AddTarget(moveToPosition);
+                unit.GetComponent<Movement>().AddTarget(moveToPosition);
             }
         }
+    }
+
+    private void AddStartVector()
+    {
+        _startPosition = _drawingSelectionBox.StartPosition;
+    }
+
+    private void AddEndVector()
+    {
+        _endPosition = _drawingSelectionBox.EndPosition;
     }
 }
