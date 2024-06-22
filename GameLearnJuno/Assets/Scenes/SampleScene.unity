@@ -309,11 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6637568036277486205, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.8
+      value: -20.2
       objectReference: {fileID: 0}
     - target: {fileID: 6637568036277486205, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.9
+      value: -5.65
       objectReference: {fileID: 0}
     - target: {fileID: 6637568036277486205, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -350,14 +350,6 @@ PrefabInstance:
     - target: {fileID: 6788799838337880544, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_Name
       value: Unit 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9114601840756544136, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 9114601840756544136, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -646,6 +638,7 @@ GameObject:
   - component: {fileID: 705392709}
   - component: {fileID: 705392708}
   - component: {fileID: 705392707}
+  - component: {fileID: 705392710}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -759,12 +752,39 @@ Transform:
   m_GameObject: {fileID: 705392706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: 1.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -10.41, y: -0.05, z: 0}
+  m_LocalScale: {x: 4.2398, y: 4.2398, z: 4.2398}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &705392710
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705392706}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1086362032
 GameObject:
   m_ObjectHideFlags: 0
