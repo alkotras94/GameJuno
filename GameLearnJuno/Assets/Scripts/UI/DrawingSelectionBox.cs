@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class DrawingSelectionBox : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _selectionAreaTransform;
+    [SerializeField] private int _radius = 3;
 
     public Vector3 StartPosition { get; private set; }
     public Vector3 EndPosition { get; private set; }

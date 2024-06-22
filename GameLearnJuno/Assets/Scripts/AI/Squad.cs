@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Squad : MonoBehaviour
 {
-    private List<Unit> _units;
+
 }

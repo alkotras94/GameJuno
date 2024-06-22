@@ -1,14 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 [RequireComponent(typeof(DrawingSelectionBox))]
 public class GameRTSController : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
- 
+
     private List<Unit> _selectedUnitRtsList;
     private DrawingSelectionBox _drawingSelectionBox;
 
+    
     private void Awake()
     {
         _selectedUnitRtsList = new List<Unit>();
@@ -50,6 +52,7 @@ public class GameRTSController : MonoBehaviour
 
             Debug.Log(_selectedUnitRtsList.Count);
         }
+
     }
 
     private void SetPointDirection(Vector3 point)
