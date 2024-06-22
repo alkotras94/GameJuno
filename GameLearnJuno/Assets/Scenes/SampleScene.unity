@@ -1110,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 519420031}
   _selectionAreaTransform: {fileID: 1883826193}
+  _radius: 3
 --- !u!1 &1327515978
 GameObject:
   m_ObjectHideFlags: 0
