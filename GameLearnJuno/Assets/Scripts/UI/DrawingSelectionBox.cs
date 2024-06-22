@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-//Как передавать параметры через событие?
+
 public class DrawingSelectionBox : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
@@ -11,8 +11,8 @@ public class DrawingSelectionBox : MonoBehaviour
     public Vector3 StartPosition { get; private set; }
     public Vector3 EndPosition { get; private set; }
 
-    public Action OnMousedStart;
-    public Action OnMousedEnd;
+    public Action<Vector3,Vector3> OnMousedPosition;
+    public Action<Vector3> SetPoint;
 
     private void Awake()
     {
@@ -25,9 +25,7 @@ public class DrawingSelectionBox : MonoBehaviour
         {
             StartPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             _selectionAreaTransform.gameObject.SetActive(true);
-            OnMousedStart?.Invoke();
         }
-
 
         if (Input.GetMouseButton(0))
         {
@@ -51,7 +49,13 @@ public class DrawingSelectionBox : MonoBehaviour
         {
             EndPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             _selectionAreaTransform.gameObject.SetActive(false);
-            OnMousedEnd?.Invoke();
+            OnMousedPosition?.Invoke(StartPosition, EndPosition);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 moveToPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            SetPoint?.Invoke(moveToPosition);
         }
     }
 }
