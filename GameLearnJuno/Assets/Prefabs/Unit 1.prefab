@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8204244650826822558}
   - component: {fileID: 4660359458071115396}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6941138024120833966}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6407059629344667231}
   - component: {fileID: 6353600863309216381}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554882349091712681}
   - component: {fileID: 8042452008034878171}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 6716380788207220783}
   - component: {fileID: 4206987040362789251}
   - component: {fileID: 4498728056515049191}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 4242856631833294727}
   - component: {fileID: 2203853494341100491}
   - component: {fileID: 7146171559325647551}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,9 @@ GameObject:
   - component: {fileID: 2537909031704365649}
   - component: {fileID: 1133068134371928054}
   - component: {fileID: 8664529060007307375}
-  m_Layer: 0
+  - component: {fileID: 5100279579514981671}
+  - component: {fileID: 1352795163523815247}
+  m_Layer: 3
   m_Name: Unit 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,6 +579,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _stop: 0
+--- !u!50 &5100279579514981671
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788799838337880544}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!195 &1352795163523815247
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788799838337880544}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &9092343785705102130
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +640,7 @@ GameObject:
   - component: {fileID: 2376317509368077493}
   - component: {fileID: 7264819082891249935}
   - component: {fileID: 4359803204270570328}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +743,7 @@ GameObject:
   - component: {fileID: 658306996736249405}
   - component: {fileID: 1045466271083254049}
   - component: {fileID: 4453124912126748404}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8370079730455551373}
   - component: {fileID: 8278683790568891870}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ' Head'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
