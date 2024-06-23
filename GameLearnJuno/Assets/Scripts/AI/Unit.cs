@@ -6,7 +6,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private GameObject _selectedGameObject;
 
-
+    private Movement _movement;
     private Health _health;
 
     private void Awake()
@@ -14,16 +14,7 @@ public class Unit : MonoBehaviour
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
         DisableSelected();
-    }
-
-    public void EnableSelected()
-    {
-        _selectedGameObject.SetActive(true);
-    }
-
-    public void DisableSelected()
-    {
-        _selectedGameObject.SetActive(false);
+        _movement = GetComponent<Movement>();
     }
 
     private void OnEnable()
@@ -36,4 +27,20 @@ public class Unit : MonoBehaviour
         _healthBar.Disable();
     }
 
+    public void EnableSelected()
+    {
+        _selectedGameObject.SetActive(true);
+    }
+
+    public void DisableSelected()
+    {
+        _selectedGameObject.SetActive(false);
+    }
+
+    public void AddTarget(Vector2 target)
+    {
+        _movement.AddTarget(target);
+    }
+
+    
 }

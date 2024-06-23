@@ -12,7 +12,7 @@ public class DrawingSelectionBox : MonoBehaviour
     public Vector3 EndPosition { get; private set; }
 
     public Action<Vector3,Vector3> OnMousedPosition;
-    public Action<Vector3> SetPoint;
+    public Action<Vector2> SetPoint;
 
     private void Awake()
     {
@@ -54,7 +54,7 @@ public class DrawingSelectionBox : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            Vector3 moveToPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 moveToPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             SetPoint?.Invoke(moveToPosition);
         }
     }

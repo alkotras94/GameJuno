@@ -5,9 +5,7 @@ using System;
 [RequireComponent(typeof(DrawingSelectionBox))]
 public class GameRTSController : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
-
-    private List<Unit> _selectedUnitRtsList;
+    /*private List<Unit> _selectedUnitRtsList;
     private DrawingSelectionBox _drawingSelectionBox;
 
     
@@ -61,5 +59,6 @@ public class GameRTSController : MonoBehaviour
         {
             unit.GetComponent<Movement>().AddTarget(point);
         }
-    }
+    }*/
+
 }

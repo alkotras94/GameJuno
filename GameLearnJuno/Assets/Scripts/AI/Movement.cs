@@ -7,11 +7,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _speed = 4;
     [SerializeField] private float _stop = 0;
 
-    private Vector3 _target;
+    private Vector2 _target;
 
     private void Start()
     {
-        _target = new Vector3(transform.position.x, transform.position.y,0);
+        _target = new Vector2(transform.position.x, transform.position.y);
     }
 
     private void Update()
@@ -19,12 +19,12 @@ public class Movement : MonoBehaviour
         ToMove(_target);
     }
 
-    public void AddTarget(Vector3 target)
+    public void AddTarget(Vector2 target)
     {
         _target = target;
     }
 
-    private void ToMove(Vector3 target)
+    private void ToMove(Vector2 target)
     {
         if (target == null)
         {
@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
         else
         {
             _speed = _speed;
-            target.z = 0;
-            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * _speed);        }
+            transform.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * _speed);
+        }
     }
 }
