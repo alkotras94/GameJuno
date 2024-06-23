@@ -2,17 +2,16 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class DrawingSelectionBox : MonoBehaviour
+public class Selection : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _selectionAreaTransform;
-    [SerializeField] private int _radius = 3;
 
-    public Vector3 StartPosition { get; private set; }
-    public Vector3 EndPosition { get; private set; }
-
-    public Action<Vector3,Vector3> OnMousedPosition;
+    public Action<Vector2, Vector2> OnMousedPosition;
     public Action<Vector2> SetPoint;
+
+    private Vector2 StartPosition;
+    private Vector2 EndPosition;
 
     private void Awake()
     {
@@ -29,14 +28,14 @@ public class DrawingSelectionBox : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 currenmousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 currenmousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
-            Vector3 lowerLeft = new Vector3(
+            Vector2 lowerLeft = new Vector2(
                     Mathf.Min(StartPosition.x, currenmousePosition.x),
                     Mathf.Min(StartPosition.y, currenmousePosition.y)
                 );
 
-            Vector3 upperRight = new Vector3(
+            Vector2 upperRight = new Vector2(
                     Mathf.Max(StartPosition.x, currenmousePosition.x),
                     Mathf.Max(StartPosition.y, currenmousePosition.y)
                 );

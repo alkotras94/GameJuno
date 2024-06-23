@@ -1,62 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-[RequireComponent(typeof(DrawingSelectionBox))]
-public class Squad : MonoBehaviour
+public class Squad
 {
-    private List<Unit> _selectedUnitRtsList;
-    private DrawingSelectionBox _drawingSelectionBox;
+    private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
 
-
-    private void Awake()
+    public void Add(Unit unit)
     {
-        _selectedUnitRtsList = new List<Unit>();
-        _drawingSelectionBox = GetComponent<DrawingSelectionBox>();
+        _selectedUnitRtsList.Add(unit);
     }
 
-    private void OnEnable()
+    public void Clear()
     {
-        _drawingSelectionBox.OnMousedPosition += UnitSelection;
-        _drawingSelectionBox.SetPoint += SetPointDirection;
-    }
-
-    private void OnDisable()
-    {
-        _drawingSelectionBox.OnMousedPosition -= UnitSelection;
-        _drawingSelectionBox.SetPoint -= SetPointDirection;
-    }
-
-    private void UnitSelection(Vector3 startPosition, Vector3 endPosition)
-    {
-        Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, endPosition);
-
-        foreach (Unit unit in _selectedUnitRtsList)
-        {
-            unit.DisableSelected();
-        }
-
         _selectedUnitRtsList.Clear();
-
-        foreach (Collider2D collider2D in collider2DArray)
-        {
-            Unit unit = collider2D.GetComponent<Unit>();
-
-            if (unit != null)
-            {
-                _selectedUnitRtsList.Add(unit);
-                unit.EnableSelected();
-            }
-
-            Debug.Log(_selectedUnitRtsList.Count);
-        }
     }
 
-
-    private void SetPointDirection(Vector2 point)
+    public void SetPointDirection(Vector2 point)
     {
-        List<Vector2> points = _circleShape.GetPositionListAround(point, new float[] { 2f, 4f, 6f }, new int[] {5,10,15});
+        List<Vector2> points = _circleShape.GetPositions(_selectedUnitRtsList.Count,point);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {

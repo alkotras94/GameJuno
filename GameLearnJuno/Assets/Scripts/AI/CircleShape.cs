@@ -2,8 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class CircleShape : MonoBehaviour
+public class CircleShape
 {
+    private int _radius = 2;
+
+    public List<Vector2> GetPositions(int count, Vector2 point)
+    {
+        var points = new List<Vector2>();
+
+        for (int i = 0; i < count; i++)
+        {
+            double angle = 2 * Math.PI * i / count;
+            double x = _radius * Math.Cos(angle);
+            double y = _radius * Math.Sin(angle);
+            points.Add(point + new Vector2((float)x, (float)y));
+        }
+        return points;
+    }
+
     public List<Vector2> GetPositionListAround(Vector2 startPosition, float[] ringDistanceArray, int[] ringPositionCountArray)
     {
         List<Vector2> listPosition = new List<Vector2>();
