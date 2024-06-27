@@ -8,13 +8,13 @@ public class Selection : MonoBehaviour
     [SerializeField] private Transform _selectionAreaTransform;
 
     private State _state;
-    private float _timeUpdate;
+    [SerializeField] private float _timeUpdate;
 
     public Action<Vector2, Vector2> OnMousedPosition;
     public Action<Vector2> SetPoint;
 
-    private Vector2 StartPosition;
-    private Vector2 EndPosition;
+    [SerializeField] private Vector2 StartPosition;
+    [SerializeField] private Vector2 EndPosition;
 
     private enum State
     {
@@ -29,33 +29,22 @@ public class Selection : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            _timeUpdate += Time.deltaTime;
-            if (_timeUpdate <= 0.5f)
-            {
-                _state = State.SetPoint;
-            }
-            else
-            {
-                _timeUpdate = 0;
-                _state = State.SelectionUnit;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) || _state == State.SelectionUnit)
+        if (Input.GetMouseButtonDown(0))
         {
             StartPoint();
-        }else if (Input.GetMouseButton(0) || _state == State.SelectionUnit)
+        }
+
+        if (Input.GetMouseButton(0))
         {
             SelectionArea();
-        }else if (Input.GetMouseButtonUp(0) || _state == State.SelectionUnit)
+        }
+
+        if (Input.GetMouseButtonUp(0))
         {
             EndPoint();
         }
 
-        if (Input.GetMouseButtonDown(0) || _state == State.SetPoint)
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 moveToPosition = StartPosition;
             SetPoint?.Invoke(moveToPosition);
