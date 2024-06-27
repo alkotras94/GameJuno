@@ -41,9 +41,9 @@ public class SelectionAreaHandler : MonoBehaviour
 
         foreach (Collider2D collider2D in collider2DArray)
         {
-            Unit unit = collider2D.GetComponent<Unit>();
+            //bool unit = collider2D.TryGetComponent(out Unit unit);
 
-            if (unit != null)
+            if (collider2D.TryGetComponent(out Unit unit))
             {
                 _squad.Add(unit);
                 _selectedUnitRtsList.Add(unit);
