@@ -1,26 +1,20 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
 public class Selection : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _selectionAreaTransform;
+    [SerializeField] private Vector2 _startPosition;
+    [SerializeField] private Vector2 _endPosition;
+    [SerializeField] private float _timerForSelection;
 
-    private State _state;
-    [SerializeField] private float _timeUpdate;
+    private State _currentState;
+    private Coroutine _coroutine;
 
-    public Action<Vector2, Vector2> OnMousedPosition;
-    public Action<Vector2> SetPoint;
-
-    [SerializeField] private Vector2 StartPosition;
-    [SerializeField] private Vector2 EndPosition;
-
-    private enum State
-    {
-        SelectionUnit,
-        SetPoint
-    }
+    public event Action<Vector2, Vector2> ShowedArea;
+    public event Action<Vector2> ShowedPointMovement;
 
     private void Awake()
     {
@@ -36,50 +30,71 @@ public class Selection : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            SelectionArea();
+            DrowSelectionArea();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            EndPoint();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector2 moveToPosition = StartPosition;
-            SetPoint?.Invoke(moveToPosition);
-            _timeUpdate = 0;
+            if (_currentState == State.SelectionUnits)
+                EndPoint();
+            else
+                ShowedPointMovement?.Invoke(_startPosition);
         }
     }
 
     private void StartPoint()
     {
-        StartPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _currentState = State.SelectionUnits;
+
+        _coroutine = StartCoroutine(StartTimer());
+
+        _startPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         _selectionAreaTransform.gameObject.SetActive(true);
     }
 
-    private void SelectionArea()
+    private void DrowSelectionArea()
     {
-        Vector2 currenmousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        _endPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 lowerLeft = new Vector2(
-                Mathf.Min(StartPosition.x, currenmousePosition.x),
-                Mathf.Min(StartPosition.y, currenmousePosition.y)
+                Mathf.Min(_startPosition.x, _endPosition.x),
+                Mathf.Min(_startPosition.y, _endPosition.y)
             );
 
         Vector2 upperRight = new Vector2(
-                Mathf.Max(StartPosition.x, currenmousePosition.x),
-                Mathf.Max(StartPosition.y, currenmousePosition.y)
+                Mathf.Max(_startPosition.x, _endPosition.x),
+                Mathf.Max(_startPosition.y, _endPosition.y)
             );
 
         _selectionAreaTransform.position = lowerLeft;
         _selectionAreaTransform.localScale = upperRight - lowerLeft;
+
+        if (_currentState == State.SelectionUnits)
+            ShowedArea?.Invoke(_startPosition, _endPosition);
     }
 
     private void EndPoint()
     {
-        EndPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+        _endPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         _selectionAreaTransform.gameObject.SetActive(false);
-        OnMousedPosition?.Invoke(StartPosition, EndPosition);
+        ShowedArea?.Invoke(_startPosition, _endPosition);
+    }
+
+    private IEnumerator StartTimer()
+    {
+        _currentState = State.SetPoint;
+
+        yield return new WaitForSeconds(_timerForSelection);
+
+        _currentState = State.SelectionUnits;
+    }
+
+    private enum State
+    {
+        SelectionUnits,
+        SetPoint
     }
 }

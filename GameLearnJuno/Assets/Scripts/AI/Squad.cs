@@ -1,19 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Squad
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
 
-    public void Add(Unit unit)
+    public void Add(IEnumerable<Unit> units)
     {
-        _selectedUnitRtsList.Add(unit);
-    }
+        if (units == null)
+            throw new NullReferenceException();
 
-    public void Clear()
-    {
+        foreach (var unit in _selectedUnitRtsList)
+        {
+            unit.DiSelected();
+        }
+
         _selectedUnitRtsList.Clear();
+
+        foreach (var unit in units)
+        {
+            if (units == null)
+                throw new NullReferenceException();
+
+            unit.Selected();
+            _selectedUnitRtsList.Add(unit);
+        }
     }
 
     public void SetPointDirection(Vector2 point)

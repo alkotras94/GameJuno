@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
-        DisableSelected();
+        DiSelected();
         _movement = GetComponent<Movement>();
     }
 
@@ -27,12 +27,12 @@ public class Unit : MonoBehaviour
         _healthBar.Disable();
     }
 
-    public void EnableSelected()
+    public void Selected()
     {
         _selectedGameObject.SetActive(true);
     }
 
-    public void DisableSelected()
+    public void DiSelected()
     {
         _selectedGameObject.SetActive(false);
     }

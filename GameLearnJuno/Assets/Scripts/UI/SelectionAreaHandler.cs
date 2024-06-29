@@ -1,58 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
+
+//Что такое инвариант
 [RequireComponent(typeof(Selection))]
 public class SelectionAreaHandler : MonoBehaviour
 {
-    private List<Unit> _selectedUnitRtsList;
     private Selection _drawingSelectionBox;
     private Squad _squad;
 
 
     private void Awake()
     {
-        _selectedUnitRtsList = new List<Unit>();
         _drawingSelectionBox = GetComponent<Selection>();
         _squad = new Squad();
     }
 
     private void OnEnable()
     {
-        _drawingSelectionBox.OnMousedPosition += UnitSelection;
-        _drawingSelectionBox.SetPoint += SetPointUnit;
+        _drawingSelectionBox.ShowedArea += UnitSelection;
+        _drawingSelectionBox.ShowedPointMovement += OnMovementToShowedPoint;
     }
 
     private void OnDisable()
     {
-        _drawingSelectionBox.OnMousedPosition -= UnitSelection;
-        _drawingSelectionBox.SetPoint -= SetPointUnit;
+        _drawingSelectionBox.ShowedArea -= UnitSelection;
+        _drawingSelectionBox.ShowedPointMovement -= OnMovementToShowedPoint;
     }
 
     private void UnitSelection(Vector2 startPosition, Vector2 endPosition)
     {
+        List<Unit> units = new List<Unit>();
+
         Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, endPosition);
 
-        foreach (Unit unit in _selectedUnitRtsList)
-            unit.DisableSelected();
-
-        _selectedUnitRtsList.Clear();
-        _squad.Clear();
-
         foreach (Collider2D collider2D in collider2DArray)
-        {
             if (collider2D.TryGetComponent(out Unit unit))
-            {
-                _squad.Add(unit);
-                _selectedUnitRtsList.Add(unit);
-                unit.EnableSelected();
-            }
+                units.Add(unit);
 
-            Debug.Log(_selectedUnitRtsList.Count);
-        }
+        _squad.Add(units);
     }
 
-    private void SetPointUnit(Vector2 point)
+    private void OnMovementToShowedPoint(Vector2 point)
     {
         _squad.SetPointDirection(point);
     }

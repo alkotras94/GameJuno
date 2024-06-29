@@ -5,8 +5,6 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
 
-    private Vector2 _target;
-
     private void Start()
     {
         _agent.updateRotation = false;
