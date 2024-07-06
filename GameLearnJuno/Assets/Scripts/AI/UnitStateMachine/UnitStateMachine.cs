@@ -29,6 +29,7 @@ public class UnitStateMachine : MonoBehaviour
     public void Waiting()
     {
         _currentState = null;
+        Debug.Log("Выход из текущего состояния");
     }
 
     public void Move()

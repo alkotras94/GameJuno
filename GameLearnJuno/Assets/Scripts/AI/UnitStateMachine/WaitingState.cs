@@ -12,6 +12,6 @@ public class WaitingState : State
 
     public override void Exit()
     {
-        //throw new System.NotImplementedException();
+        Debug.Log("Выход из состояния ожидания");
     }
 }

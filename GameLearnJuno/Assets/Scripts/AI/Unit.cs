@@ -40,6 +40,17 @@ public class Unit : MonoBehaviour
         _selectedGameObject.SetActive(false);
     }
 
+    private void LateUpdate()
+    {
+        float distane = Vector2.Distance(gameObject.transform.position, Target);
+
+        //Debug.Log(distane);
+
+        if (distane <= 0.5f)
+        {
+            _unitStateMachine.Waiting();
+        }
+    }
     public void AddTarget(Vector2 target)
     {
         Target = target;
