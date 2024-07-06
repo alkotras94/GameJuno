@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class MoveState : State
 {
     private Movement _movement;
     private Unit _unit;
-    public MoveState(Movement movement, Unit unit)
+    private UnitStateMachine _unitStateMachine;
+    public MoveState(Movement movement, Unit unit, UnitStateMachine unitStateMachine)
     {
         _movement = movement;
         _unit = unit;
+        _unitStateMachine = unitStateMachine;
     }
+
     public override void Enter()
     {
         _movement.AddTarget(_unit.Target);
+        Debug.Log("Состояние движения");
     }
 
     public override void Exit()
     {
-        //throw new System.NotImplementedException();
+        _unitStateMachine.Waiting();
+        Debug.Log("Выход из состояния движения");
+
     }
 }

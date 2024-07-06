@@ -1368,7 +1368,7 @@ MonoBehaviour:
   _selectionAreaTransform: {fileID: 1883826193}
   _startPosition: {x: 0, y: 0}
   _endPosition: {x: 0, y: 0}
-  _timerForSelection: 0.5
+  _timerForSelection: 0.1
 --- !u!4 &1290424744 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8376482120387777168, guid: 9ebe7b120d5ba704f9bf32efa2d3c8f3, type: 3}
