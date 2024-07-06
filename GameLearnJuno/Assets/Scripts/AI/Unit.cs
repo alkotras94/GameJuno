@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -5,19 +6,19 @@ public class Unit : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private GameObject _selectedGameObject;
-    [SerializeField] private UnitStateMachine _unitStateMachine;
 
+    public event Action CamePointed;
+    public event Action EnableStateMoving;
     public Vector2 Target { get; private set; }
-    //private Movement _movement;
+
     private Health _health;
+    private bool _onPoints = true;
 
     private void Awake()
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
         DiSelect();
-        //_movement = GetComponent<Movement>();
-        _unitStateMachine = GetComponent<UnitStateMachine>();
     }
 
     private void OnEnable()
@@ -42,20 +43,17 @@ public class Unit : MonoBehaviour
 
     private void LateUpdate()
     {
-        float distane = Vector2.Distance(gameObject.transform.position, Target);
-
-        //Debug.Log(distane);
-
-        if (distane <= 0.5f)
+        if (Vector2.Distance(gameObject.transform.position, Target) <= 0.5f && _onPoints)
         {
-            _unitStateMachine.Waiting();
+            CamePointed?.Invoke();
+            _onPoints = false;
         }
     }
     public void AddTarget(Vector2 target)
     {
+        _onPoints = true;
         Target = target;
-        //_movement.AddTarget(target);
-        _unitStateMachine.Move();
+        EnableStateMoving?.Invoke();
     }
  
 }

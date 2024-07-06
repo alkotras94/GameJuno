@@ -9,9 +9,8 @@ public class UnitStateMachine : MonoBehaviour
     [SerializeField] private Unit _unit;
 
     private UnitStateMachine _unitStateMachine;
-    private State _currentState;
     private List<State> _states;
-    private int _indexStateWaiting = 0;
+    private State _currentState;
 
     private void Awake()
     {
@@ -20,23 +19,38 @@ public class UnitStateMachine : MonoBehaviour
         _states = new List<State>()
         {
             new WaitingState(),
-            new MoveState(_movement, _unit, _unitStateMachine)
+            new MoveState(_movement, _unit, _unitStateMachine),
+            new AttackState()
         };
     }
 
-    
-
-    public void Waiting()
+    private void OnEnable()
     {
-        _currentState = null;
-        Debug.Log("Выход из текущего состояния");
+        _unit.CamePointed += OnWaiting;
+        _unit.EnableStateMoving += OnMove;
     }
 
-    public void Move()
+    private void OnDisable()
+    {
+        _unit.CamePointed -= OnWaiting;
+        _unit.EnableStateMoving -= OnMove;
+    }
+
+    public void OnWaiting()
+    {
+        _currentState = null;
+        ChangeState<WaitingState>();
+    }
+
+    public void OnMove()
     {
         ChangeState<MoveState>();
     }
 
+    public void OnAttackState()
+    {
+        ChangeState<AttackState>();
+    }
 
     private void ChangeState<T>() where T : State
     {

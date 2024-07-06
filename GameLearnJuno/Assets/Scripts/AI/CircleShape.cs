@@ -5,7 +5,6 @@ using System;
 public class CircleShape
 {
     private int _radius = 2;
-
     public List<Vector2> GetPositions(int count, Vector2 point)
     {
         var points = new List<Vector2>();

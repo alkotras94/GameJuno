@@ -19,8 +19,7 @@ public class MoveState : State
 
     public override void Exit()
     {
-        _unitStateMachine.Waiting();
         Debug.Log("Выход из состояния движения");
-
+        _unitStateMachine.OnWaiting();
     }
 }
