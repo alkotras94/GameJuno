@@ -6,7 +6,7 @@ public class Squad
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
-
+    
     public void Add(IEnumerable<Unit> units)
     {
         if (units == null)
@@ -14,7 +14,7 @@ public class Squad
 
         foreach (var unit in _selectedUnitRtsList)
         {
-            unit.DiSelected();
+            unit.DiSelect();
         }
 
         _selectedUnitRtsList.Clear();
@@ -24,7 +24,7 @@ public class Squad
             if (units == null)
                 throw new NullReferenceException();
 
-            unit.Selected();
+            unit.Select();
             _selectedUnitRtsList.Add(unit);
         }
     }

@@ -5,16 +5,19 @@ public class Unit : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private GameObject _selectedGameObject;
+    [SerializeField] private UnitStateMachine _unitStateMachine;
 
-    private Movement _movement;
+    public Vector2 Target { get; private set; }
+    //private Movement _movement;
     private Health _health;
 
     private void Awake()
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
-        DiSelected();
-        _movement = GetComponent<Movement>();
+        DiSelect();
+        //_movement = GetComponent<Movement>();
+        _unitStateMachine = GetComponent<UnitStateMachine>();
     }
 
     private void OnEnable()
@@ -27,20 +30,21 @@ public class Unit : MonoBehaviour
         _healthBar.Disable();
     }
 
-    public void Selected()
+    public void Select()
     {
         _selectedGameObject.SetActive(true);
     }
 
-    public void DiSelected()
+    public void DiSelect()
     {
         _selectedGameObject.SetActive(false);
     }
 
     public void AddTarget(Vector2 target)
     {
-        _movement.AddTarget(target);
+        Target = target;
+        //_movement.AddTarget(target);
+        _unitStateMachine.Move();
     }
-
-    
+ 
 }

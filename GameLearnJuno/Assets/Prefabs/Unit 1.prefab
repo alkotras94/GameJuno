@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 8664529060007307375}
   - component: {fileID: 5721643529860309498}
   - component: {fileID: 4181317886019001362}
+  - component: {fileID: 1504054297591880332}
   m_Layer: 0
   m_Name: Unit 1
   m_TagString: Untagged
@@ -520,6 +521,7 @@ MonoBehaviour:
   _maxHealth: 100
   _healthBar: {fileID: 4359803204270570328}
   _selectedGameObject: {fileID: 4126843952439078627}
+  _unitStateMachine: {fileID: 1504054297591880332}
 --- !u!114 &8664529060007307375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +602,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1504054297591880332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788799838337880544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec758d38ecf6c674aae31353c032925d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movement: {fileID: 8664529060007307375}
+  _unit: {fileID: 2537909031704365649}
 --- !u!1 &9092343785705102130
 GameObject:
   m_ObjectHideFlags: 0
