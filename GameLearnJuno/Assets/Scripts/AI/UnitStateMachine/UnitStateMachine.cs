@@ -8,46 +8,34 @@ public class UnitStateMachine : MonoBehaviour
     [SerializeField] private Movement _movement;
     [SerializeField] private Unit _unit;
 
-    private UnitStateMachine _unitStateMachine;
     private List<State> _states;
     private State _currentState;
 
+    public Vector2 Target { get; private set; }
+
     private void Awake()
     {
-        _unitStateMachine = GetComponent<UnitStateMachine>();
-
         _states = new List<State>()
         {
             new WaitingState(),
-            new MoveState(_movement, _unit, _unitStateMachine),
+            new MoveState(_movement, this),
             new AttackState()
         };
     }
 
-    private void OnEnable()
-    {
-        _unit.CamePointed += OnWaiting;
-        _unit.EnableStateMoving += OnMove;
-    }
-
-    private void OnDisable()
-    {
-        _unit.CamePointed -= OnWaiting;
-        _unit.EnableStateMoving -= OnMove;
-    }
-
-    public void OnWaiting()
+    public void Wait()
     {
         _currentState = null;
         ChangeState<WaitingState>();
     }
 
-    public void OnMove()
+    public void Move(Vector2 target)
     {
+        Target = target;
         ChangeState<MoveState>();
     }
 
-    public void OnAttackState()
+    public void AttackState()
     {
         ChangeState<AttackState>();
     }
@@ -63,5 +51,4 @@ public class UnitStateMachine : MonoBehaviour
         _currentState = _states.FirstOrDefault(state => state is T);
         _currentState.Enter();
     }
-
 }

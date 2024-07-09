@@ -6,13 +6,13 @@ public class Unit : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private GameObject _selectedGameObject;
-
-    public event Action CamePointed;
-    public event Action EnableStateMoving;
-    public Vector2 Target { get; private set; }
+    [SerializeField] private UnitStateMachine _stateMachine;
 
     private Health _health;
-    private bool _onPoints = true;
+
+    public Vector2 Target { get; private set; }
+
+    public event Action CamePointed;
 
     private void Awake()
     {
@@ -41,19 +41,9 @@ public class Unit : MonoBehaviour
         _selectedGameObject.SetActive(false);
     }
 
-    private void LateUpdate()
-    {
-        if (Vector2.Distance(gameObject.transform.position, Target) <= 0.5f && _onPoints)
-        {
-            CamePointed?.Invoke();
-            _onPoints = false;
-        }
-    }
     public void AddTarget(Vector2 target)
     {
-        _onPoints = true;
-        Target = target;
-        EnableStateMoving?.Invoke();
+        _stateMachine.Move(target);
     }
  
 }

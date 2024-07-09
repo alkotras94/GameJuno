@@ -521,7 +521,7 @@ MonoBehaviour:
   _maxHealth: 100
   _healthBar: {fileID: 4359803204270570328}
   _selectedGameObject: {fileID: 4126843952439078627}
-  _unitStateMachine: {fileID: 1504054297591880332}
+  _stateMachine: {fileID: 1504054297591880332}
 --- !u!114 &8664529060007307375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 4181317886019001362}
+  _distanceStop: 0.5
 --- !u!61 &5721643529860309498
 BoxCollider2D:
   m_ObjectHideFlags: 0
