@@ -5,6 +5,37 @@ using System;
 public class CircleShape
 {
     private int _radius = 2;
+    private int _progression = 3;
+
+    public List<Vector2> GetPositionListAround(Vector2 center, int pointsCount)
+    {
+        List<Vector2> points = new List<Vector2>();
+
+        int pointsPerRing = 1;
+        int curentDistance = 0;
+        int pointsLeft = pointsCount;
+
+        while (pointsLeft > 0)
+        {
+            if (pointsLeft < pointsPerRing)
+                pointsPerRing = pointsLeft;
+
+            for (int i = 0; i < pointsPerRing; i++)
+            {
+                float angle = 2 * Mathf.PI * i / pointsPerRing;
+                Vector2 newPoint = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+                points.Add(newPoint * curentDistance + center);
+            }
+
+            pointsLeft -= pointsPerRing;
+            pointsPerRing += _progression;
+            curentDistance++;
+        }
+
+        return points;
+    }
+
     public List<Vector2> GetPositions(int count, Vector2 point)
     {
         var points = new List<Vector2>();

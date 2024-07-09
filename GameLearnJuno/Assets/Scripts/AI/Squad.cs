@@ -31,7 +31,7 @@ public class Squad
 
     public void SetPointDirection(Vector2 point)
     {
-        List<Vector2> points = _circleShape.GetPositions(_selectedUnitRtsList.Count,point);
+        List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
