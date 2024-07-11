@@ -19,18 +19,9 @@ public class HealthBar : MonoBehaviour
 
     }
 
-    public void Enable()
-    {
-        _health.Changed += HealthUpdate;
-    }
+    public void Enable() => _health.Changed += HealthUpdate;
 
-    public void Disable()
-    {
-        _health.Changed -= HealthUpdate;
-    }
+    public void Disable() => _health.Changed -= HealthUpdate;
 
-    private void HealthUpdate()
-    {
-        _slider.value = _health.CurrentHealth/ _health.MaxHealth;
-    }
+    private void HealthUpdate() => _slider.value = _health.CurrentHealth / _health.MaxHealth;
 }

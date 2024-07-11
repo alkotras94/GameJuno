@@ -522,6 +522,7 @@ MonoBehaviour:
   _healthBar: {fileID: 4359803204270570328}
   _selectedGameObject: {fileID: 4126843952439078627}
   _stateMachine: {fileID: 1504054297591880332}
+  _movement: {fileID: 8664529060007307375}
 --- !u!114 &8664529060007307375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,8 +616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec758d38ecf6c674aae31353c032925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 8664529060007307375}
-  _unit: {fileID: 2537909031704365649}
 --- !u!1 &9092343785705102130
 GameObject:
   m_ObjectHideFlags: 0

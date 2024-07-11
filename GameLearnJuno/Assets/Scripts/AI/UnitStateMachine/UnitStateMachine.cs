@@ -1,20 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    [SerializeField] private Movement _movement;
-    [SerializeField] private Unit _unit;
-
+    private Movement _movement;
     private List<State> _states;
     private State _currentState;
 
     public Vector2 Target { get; private set; }
 
-    private void Awake()
+    public void Initialize(Movement movement)
     {
+        if (movement == null)
+            Debug.Log("Movement null");
+
+        _movement = movement;
+
         _states = new List<State>()
         {
             new WaitingState(),
@@ -25,7 +27,6 @@ public class UnitStateMachine : MonoBehaviour
 
     public void Wait()
     {
-        _currentState = null;
         ChangeState<WaitingState>();
     }
 

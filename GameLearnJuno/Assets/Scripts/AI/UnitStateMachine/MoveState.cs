@@ -4,6 +4,7 @@ public class MoveState : State
 {
     private Movement _movement;
     private UnitStateMachine _stateMachine;
+
     public MoveState(Movement movement, UnitStateMachine unitStateMachine)
     {
         _movement = movement;
@@ -14,13 +15,13 @@ public class MoveState : State
     {
         _movement.AddTarget(_stateMachine.Target);
         _movement.PointCame += OnPointCame;
-        Debug.Log("Состояние движения");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 
     public override void Exit()
     {
         _movement.PointCame -= OnPointCame;
-        Debug.Log("Выход из состояния движения");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 
     private void OnPointCame()
