@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,23 +6,28 @@ using UnityEngine;
 public class UnitStateMachine : MonoBehaviour
 {
     private Movement _movement;
+    private Health _health;
     private List<State> _states;
     private State _currentState;
 
     public Vector2 Target { get; private set; }
 
-    public void Initialize(Movement movement)
+    public void Initialize(Movement movement, Health health)
     {
         if (movement == null)
-            Debug.Log("Movement null");
+            throw new NullReferenceException();
+
+        if(health == null)
+            throw new NullReferenceException();
 
         _movement = movement;
+        _health = health; 
 
         _states = new List<State>()
         {
             new WaitingState(),
             new MoveState(_movement, this),
-            new AttackState()
+            new AttackState(_health)
         };
     }
 

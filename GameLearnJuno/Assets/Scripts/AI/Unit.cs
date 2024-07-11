@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
-        _stateMachine.Initialize(_movement);
+        _stateMachine.Initialize(_movement, _health);
         DiSelect();
     }
 
