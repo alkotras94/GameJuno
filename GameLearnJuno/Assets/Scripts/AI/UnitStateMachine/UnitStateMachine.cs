@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    private Movement _movement;
-    private Health _health;
     private List<State> _states;
     private State _currentState;
 
@@ -20,14 +18,11 @@ public class UnitStateMachine : MonoBehaviour
         if(health == null)
             throw new NullReferenceException();
 
-        _movement = movement;
-        _health = health; 
-
         _states = new List<State>()
         {
             new WaitingState(),
-            new MoveState(_movement, this),
-            new AttackState(_health)
+            new MoveState(movement, this),
+            new AttackState(health)
         };
     }
 

@@ -14,7 +14,7 @@ public class Squad
 
         foreach (var unit in _selectedUnitRtsList)
         {
-            unit.DiSelect();
+            unit.Diselect();
         }
 
         _selectedUnitRtsList.Clear();

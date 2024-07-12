@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -11,16 +10,12 @@ public class Unit : MonoBehaviour
 
     private Health _health;
 
-    public Vector2 Target { get; private set; }
-
-    public event Action CamePointed;
-
     private void Awake()
     {
         _health = new Health(_maxHealth);
         _healthBar.Initialize(_health);
         _stateMachine.Initialize(_movement, _health);
-        DiSelect();
+        Diselect();
     }
 
     private void OnEnable() => _healthBar.Enable();
@@ -29,7 +24,7 @@ public class Unit : MonoBehaviour
 
     public void Select() => _selectedGameObject.SetActive(true);
 
-    public void DiSelect() => _selectedGameObject.SetActive(false);
+    public void Diselect() => _selectedGameObject.SetActive(false);
 
     public void AddTarget(Vector2 target)
     {
