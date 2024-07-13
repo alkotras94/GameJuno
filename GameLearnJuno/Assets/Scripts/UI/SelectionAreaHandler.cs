@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//Что такое инвариант
 [RequireComponent(typeof(Selection))]
 public class SelectionAreaHandler : MonoBehaviour
 {
@@ -19,13 +17,13 @@ public class SelectionAreaHandler : MonoBehaviour
     private void OnEnable()
     {
         _drawingSelectionBox.ShowedArea += UnitSelection;
-        _drawingSelectionBox.ShowedPointMovement += OnMovementToShowedPoint;
+        //_drawingSelectionBox.ShowedPointMovement += OnMovementToShowedPoint;
     }
 
     private void OnDisable()
     {
         _drawingSelectionBox.ShowedArea -= UnitSelection;
-        _drawingSelectionBox.ShowedPointMovement -= OnMovementToShowedPoint;
+        //_drawingSelectionBox.ShowedPointMovement -= OnMovementToShowedPoint;
     }
 
     private void UnitSelection(Vector2 startPosition, Vector2 endPosition)
@@ -41,8 +39,8 @@ public class SelectionAreaHandler : MonoBehaviour
         _squad.Add(units);
     }
 
-    private void OnMovementToShowedPoint(Vector2 point)
+    /*private void OnMovementToShowedPoint(Vector2 point)
     {
-        _squad.SetPointDirection(point);
-    }
+        _squad.HandleHit(point);
+    }*/
 }

@@ -28,21 +28,21 @@ public class UnitStateMachine : MonoBehaviour
 
     public void Wait()
     {
-        ChangeState<WaitingState>();
+        ChangeState<WaitingState>(null);
     }
 
     public void Move(Vector2 target)
     {
         Target = target;
-        ChangeState<MoveState>();
+        ChangeState<MoveState>(null);
     }
 
     public void AttackState()
     {
-        ChangeState<AttackState>();
+        ChangeState<AttackState>(null);
     }
 
-    private void ChangeState<T>() where T : State
+    private void ChangeState<T>(IHit hit) where T : State
     {
 
         if (_currentState != null)
@@ -51,6 +51,6 @@ public class UnitStateMachine : MonoBehaviour
         }  
 
       _currentState = _states.FirstOrDefault(state => state is T);
-        _currentState.Enter();
+        _currentState.Enter(hit);
     }
 }

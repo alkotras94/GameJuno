@@ -38,10 +38,25 @@ public class Selection : MonoBehaviour
             if (_currentState == State.SelectionUnits)
                 EndPoint();
             else
-                ShowedPointMovement?.Invoke(_startPosition);
+                Raycast();
         }
     }
 
+    private void Raycast()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+
+        if (hit.collider.TryGetComponent<IHit>(out IHit iHit))
+        {
+            Debug.Log("ћы получили интерфейс јй’ит");
+        }
+        else
+        {
+            ShowedPointMovement?.Invoke(_startPosition);
+        }
+    }
     private void StartPoint()
     {
         if (_coroutine != null)

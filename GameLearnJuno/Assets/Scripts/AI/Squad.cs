@@ -29,13 +29,13 @@ public class Squad
         }
     }
 
-    public void SetPointDirection(Vector2 point)
+    public void HandleHit(IHit hit)
     {
-        List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
+        //List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            _selectedUnitRtsList[i].AddTarget(points[i]);
+            //_selectedUnitRtsList[i].AddTarget(points[i]);
         }
     }
 

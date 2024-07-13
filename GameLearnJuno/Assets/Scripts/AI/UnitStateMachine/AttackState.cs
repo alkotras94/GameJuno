@@ -8,7 +8,7 @@ public class AttackState : State
         _health = health;
     }
 
-    public override void Enter()
+    public override void Enter(IHit hit)
     {
         throw new System.NotImplementedException();
     }
