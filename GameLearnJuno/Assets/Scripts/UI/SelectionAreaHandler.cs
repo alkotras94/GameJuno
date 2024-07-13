@@ -11,7 +11,7 @@ public class SelectionAreaHandler : MonoBehaviour
     private void Awake()
     {
         _drawingSelectionBox = GetComponent<Selection>();
-        _squad = new Squad();
+        _squad = new Squad(_drawingSelectionBox);
     }
 
     private void OnEnable()

@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
+//Колайдер земли перекрывает все остальные коллайдеры
 public class Selection : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
@@ -14,7 +15,7 @@ public class Selection : MonoBehaviour
     private Coroutine _coroutine;
 
     public event Action<Vector2, Vector2> ShowedArea;
-    public event Action<Vector2> ShowedPointMovement;
+    public event Action<IHit,Vector2> ShowedPointMovement;
 
     private void Awake()
     {
@@ -50,11 +51,8 @@ public class Selection : MonoBehaviour
 
         if (hit.collider.TryGetComponent<IHit>(out IHit iHit))
         {
-            Debug.Log("Мы получили интерфейс АйХит");
-        }
-        else
-        {
-            ShowedPointMovement?.Invoke(_startPosition);
+            Debug.Log(hit.point);
+            ShowedPointMovement?.Invoke(iHit, hit.point);
         }
     }
     private void StartPoint()

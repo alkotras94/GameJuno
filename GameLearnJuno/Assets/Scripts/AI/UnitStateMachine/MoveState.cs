@@ -18,13 +18,11 @@ public class MoveState : State
 
         _movement.AddTarget(hit.Target);
         _movement.PointCame += OnPointCame;
-        Debug.Log("��������� ��������");
     }
 
     public override void Exit()
     {
         _movement.PointCame -= OnPointCame;
-        Debug.Log("����� �� ��������� ��������");
     }
 
     private void OnPointCame()

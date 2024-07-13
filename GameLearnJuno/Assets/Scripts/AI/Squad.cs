@@ -6,7 +6,13 @@ public class Squad
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
-    
+    private Selection _selection;
+
+    public Squad(Selection selection)
+    {
+        _selection = selection;
+        _selection.ShowedPointMovement += OnHandleHit;
+    }
     public void Add(IEnumerable<Unit> units)
     {
         if (units == null)
@@ -29,13 +35,19 @@ public class Squad
         }
     }
 
-    public void HandleHit(IHit hit)
+    public void OnHandleHit(IHit hit, Vector2 point)
     {
-        //List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
+        SetPoinDirection(point);
+        _selection.ShowedPointMovement -= OnHandleHit;
+    }
+
+    public void SetPoinDirection(Vector2 point)
+    {
+        List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            //_selectedUnitRtsList[i].AddTarget(points[i]);
+            _selectedUnitRtsList[i].AddTarget(points[i]);
         }
     }
 

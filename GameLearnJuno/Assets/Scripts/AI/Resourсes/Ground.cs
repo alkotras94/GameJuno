@@ -13,6 +13,6 @@ public class Ground : MonoBehaviour, IHit
 
     public void Enable()
     {
-        throw new System.NotImplementedException();
+        Target = Input.mousePosition;
     }
 }
