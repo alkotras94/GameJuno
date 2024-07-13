@@ -50,7 +50,7 @@ public class UnitStateMachine : MonoBehaviour
             _currentState.Exit();
         }  
 
-        _currentState = _states.FirstOrDefault(state => state is T);
+      _currentState = _states.FirstOrDefault(state => state is T);
         _currentState.Enter();
     }
 }
