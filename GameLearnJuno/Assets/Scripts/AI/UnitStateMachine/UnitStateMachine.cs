@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UnitStateMachine : MonoBehaviour
+public class UnitStateMachine : MonoBehaviour, IHitVisitor
 {
     private List<State> _states;
     private State _currentState;
@@ -26,14 +26,36 @@ public class UnitStateMachine : MonoBehaviour
         };
     }
 
+    public void Visit(Hit hit)
+    {
+        Visit((dynamic)hit);
+    }
+
+    public void Visit(Ground groundHit)
+    {
+        Debug.Log("Земля");
+        OnHandleHit(groundHit);
+    }
+
+    public void Visit(Wood woodHit)
+    {
+        Debug.Log("Дерево");
+        OnHandleHit(woodHit);
+    }
+
+    public void Visit(Stone stoneHit)
+    {
+        Debug.Log("Камень");
+        OnHandleHit(stoneHit);
+    }
+
     public void Wait()
     {
         ChangeState<WaitingState>(null);
     }
 
-    public void Move(Vector2 target)
+    public void OnHandleHit(Hit hit)
     {
-        Target = target;
         ChangeState<MoveState>(null);
     }
 
@@ -42,7 +64,7 @@ public class UnitStateMachine : MonoBehaviour
         ChangeState<AttackState>(null);
     }
 
-    private void ChangeState<T>(IHit hit) where T : State
+    private void ChangeState<T>(Hit hit) where T : State
     {
 
         if (_currentState != null)
@@ -53,4 +75,12 @@ public class UnitStateMachine : MonoBehaviour
       _currentState = _states.FirstOrDefault(state => state is T);
         _currentState.Enter(hit);
     }
+}
+
+public interface IHitVisitor
+{
+    void Visit(Hit hit);
+    void Visit(Ground groundHit);
+    void Visit(Wood woodHit);
+    void Visit(Stone stoneHit);
 }

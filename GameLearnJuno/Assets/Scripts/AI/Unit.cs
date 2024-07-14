@@ -26,9 +26,9 @@ public class Unit : MonoBehaviour
 
     public void Diselect() => _selectedGameObject.SetActive(false);
 
-    public void AddTarget(Vector2 target)
+    public void AddHit(Hit hit)
     {
-        _stateMachine.Move(target);
+        _stateMachine.Visit(hit);
     }
  
 }

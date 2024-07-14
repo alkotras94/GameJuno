@@ -35,20 +35,23 @@ public class Squad
         }
     }
 
-    public void OnHandleHit(IHit hit, Vector2 point)
+    public void OnHandleHit(Hit hit)
     {
-        SetPoinDirection(point);
-        _selection.ShowedPointMovement -= OnHandleHit;
-    }
-
-    public void SetPoinDirection(Vector2 point)
-    {
-        List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
+        List<Vector2> points = SetPoinDirection(hit.Target);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            _selectedUnitRtsList[i].AddTarget(points[i]);
+            _selectedUnitRtsList[i].AddHit(hit);
         }
+
+        _selection.ShowedPointMovement -= OnHandleHit;
+    }
+
+    public List<Vector2> SetPoinDirection(Vector2 point)
+    {
+        List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
+
+        return points;
     }
 
 }

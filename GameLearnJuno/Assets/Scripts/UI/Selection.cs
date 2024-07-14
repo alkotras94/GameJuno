@@ -15,7 +15,7 @@ public class Selection : MonoBehaviour
     private Coroutine _coroutine;
 
     public event Action<Vector2, Vector2> ShowedArea;
-    public event Action<IHit,Vector2> ShowedPointMovement;
+    public event Action<Hit> ShowedPointMovement;
 
     private void Awake()
     {
@@ -49,10 +49,10 @@ public class Selection : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
 
-        if (hit.collider.TryGetComponent<IHit>(out IHit iHit))
+        if (hit.collider.TryGetComponent(out Hit rHit))
         {
-            Debug.Log(hit.point);
-            ShowedPointMovement?.Invoke(iHit, hit.point);
+            rHit.Add(hit.point);
+            ShowedPointMovement?.Invoke(rHit);
         }
     }
     private void StartPoint()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour, IHit
+public class Ground : Hit
 {
     public Vector2 Target { get; set; }
 

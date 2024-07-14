@@ -11,12 +11,12 @@ public class MoveState : State
         _stateMachine = unitStateMachine;
     }
 
-    public override void Enter(IHit hit)
+    public override void Enter(Hit hit)
     {
         if (TryConvert(hit, out Ground concretHit) == false)
             throw new InvalidOperationException();
 
-        _movement.AddTarget(hit.Target);
+        _movement.AddTarget();
         _movement.PointCame += OnPointCame;
     }
 
