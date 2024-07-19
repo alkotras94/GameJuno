@@ -11,12 +11,9 @@ public class MoveState : State
         _stateMachine = unitStateMachine;
     }
 
-    public override void Enter(Hit hit)
+    public override void Enter(Vector2 point)
     {
-        if (TryConvert(hit, out Ground concretHit) == false)
-            throw new InvalidOperationException();
-
-        _movement.AddTarget();
+        _movement.AddTarget(point);
         _movement.PointCame += OnPointCame;
     }
 

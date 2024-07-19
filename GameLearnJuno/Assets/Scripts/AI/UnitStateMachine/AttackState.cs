@@ -1,4 +1,4 @@
-
+using UnityEngine;
 public class AttackState : State
 {
     private Health _health;
@@ -8,14 +8,14 @@ public class AttackState : State
         _health = health;
     }
 
-    public override void Enter(Hit hit)
+    public override void Enter(Vector2 point)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
 }

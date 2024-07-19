@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : Hit
+public class Wood : Resours, IHitble
 {
     
 }

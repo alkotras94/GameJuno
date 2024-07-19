@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stone : Hit
+public class Stone : Resours, IHitble
 {
 
 }

@@ -2,17 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Squad
+public class Squad : IHitResources
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
-    private Selection _selection;
 
-    public Squad(Selection selection)
-    {
-        _selection = selection;
-        _selection.ShowedPointMovement += OnHandleHit;
-    }
     public void Add(IEnumerable<Unit> units)
     {
         if (units == null)
@@ -35,16 +29,14 @@ public class Squad
         }
     }
 
-    public void OnHandleHit(Hit hit)
+    public void AddTarget(Vector2 point)
     {
-        List<Vector2> points = SetPoinDirection(hit.Target);
+        List<Vector2> points = SetPoinDirection(point);
 
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            _selectedUnitRtsList[i].AddHit(hit);
+            _selectedUnitRtsList[i].AddHit(points[i]);
         }
-
-        _selection.ShowedPointMovement -= OnHandleHit;
     }
 
     public List<Vector2> SetPoinDirection(Vector2 point)
@@ -54,4 +46,25 @@ public class Squad
         return points;
     }
 
+    public void Visit(Resours resources)
+    {
+        Visit((dynamic)resources);
+    }
+
+    public void Visit(Stone stoneHit)
+    {
+        
+    }
+
+    public void Visit(Wood woodHit)
+    {
+        
+    }
+}
+
+public interface IHitResources
+{
+    void Visit(Resours resources);
+    void Visit(Stone stoneHit);
+    void Visit(Wood woodHit);
 }

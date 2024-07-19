@@ -2,7 +2,6 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-//Колайдер земли перекрывает все остальные коллайдеры
 public class Selection : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
@@ -13,9 +12,9 @@ public class Selection : MonoBehaviour
 
     private State _currentState;
     private Coroutine _coroutine;
+    private SelectionHandler _selectionHandler = new SelectionHandler();
 
     public event Action<Vector2, Vector2> ShowedArea;
-    public event Action<Hit> ShowedPointMovement;
 
     private void Awake()
     {
@@ -46,13 +45,11 @@ public class Selection : MonoBehaviour
     private void Raycast()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        RaycastHit2D raycastHit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-
-        if (hit.collider.TryGetComponent(out Hit rHit))
+        if (raycastHit.collider.TryGetComponent(out IHitble hitble))
         {
-            rHit.Add(hit.point);
-            ShowedPointMovement?.Invoke(rHit);
+            _selectionHandler.Visit(hitble, _startPosition);
         }
     }
     private void StartPoint()
@@ -93,7 +90,10 @@ public class Selection : MonoBehaviour
     {
         _endPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         _selectionAreaTransform.gameObject.SetActive(false);
-        ShowedArea?.Invoke(_startPosition, _endPosition);
+
+        Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(_startPosition, _endPosition);
+
+        _selectionHandler.SelectUnits(collider2DArray);
     }
 
     private IEnumerator StartTimer()
