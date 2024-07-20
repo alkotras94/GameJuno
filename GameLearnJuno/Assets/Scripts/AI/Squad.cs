@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Squad : IHitResources
+public class Squad
 {
     private List<Unit> _selectedUnitRtsList = new List<Unit>();
     private CircleShape _circleShape = new CircleShape();
@@ -39,32 +39,19 @@ public class Squad : IHitResources
         }
     }
 
-    public List<Vector2> SetPoinDirection(Vector2 point)
+    public void TransferUnit(Resours resours,Vector2 point)
+    {
+        for (int i = 0; i < _selectedUnitRtsList.Count; i++)
+        {
+            _selectedUnitRtsList[i].TransferStateMachine(point,resours);
+        }
+    }
+
+    private List<Vector2> SetPoinDirection(Vector2 point)
     {
         List<Vector2> points = _circleShape.GetPositionListAround(point, _selectedUnitRtsList.Count);
 
         return points;
     }
-
-    public void Visit(Resours resources)
-    {
-        Visit((dynamic)resources);
-    }
-
-    public void Visit(Stone stoneHit)
-    {
-        
-    }
-
-    public void Visit(Wood woodHit)
-    {
-        
-    }
 }
 
-public interface IHitResources
-{
-    void Visit(Resours resources);
-    void Visit(Stone stoneHit);
-    void Visit(Wood woodHit);
-}

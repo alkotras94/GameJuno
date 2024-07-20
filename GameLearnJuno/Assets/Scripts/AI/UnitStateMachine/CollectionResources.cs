@@ -2,19 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectionResources : State
+public class CollectionResources : State, IHitResources
 {
-    public CollectionResources()
+    private UnitStateMachine _stateMachine;
+    private Movement _movement;
+    public CollectionResources(Movement movement,UnitStateMachine stateMachine)
     {
-
+        _stateMachine = stateMachine;
+        _movement = movement;
     }
-    public override void Enter(Vector2 point)
+    public override void Enter(Vector2 point, Resours resours)
     {
-        throw new System.NotImplementedException();
+        Visit(resours);
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
+
+    public void Visit(Resours resources)
+    {
+        Visit((dynamic)resources);
+    }
+
+    public void Visit(Stone stoneHit)
+    {
+
+    }
+
+    public void Visit(Wood woodHit)
+    {
+
+    }
+}
+
+public interface IHitResources
+{
+    void Visit(Resours resources);
+    void Visit(Stone stoneHit);
+    void Visit(Wood woodHit);
 }

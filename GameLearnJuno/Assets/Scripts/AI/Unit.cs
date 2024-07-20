@@ -30,5 +30,10 @@ public class Unit : MonoBehaviour
     {
         _stateMachine.Move(target);
     }
+
+    public void TransferStateMachine(Vector2 point, Resours resours)
+    {
+        _stateMachine.CollectingResources(point, resours);
+    }
  
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class State
 {
-    public abstract void Enter(Vector2 point);
+    public abstract void Enter(Vector2 point, Resours resours);
 
     public abstract void Exit();
 

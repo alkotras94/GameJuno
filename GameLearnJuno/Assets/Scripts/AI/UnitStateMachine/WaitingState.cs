@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaitingState : State
 {
-    public override void Enter(Vector2 point)
+    public override void Enter(Vector2 point, Resours resours)
     {
         Debug.Log("Состояние ожидания");
     }

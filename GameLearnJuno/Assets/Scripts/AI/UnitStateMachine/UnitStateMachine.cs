@@ -8,8 +8,6 @@ public class UnitStateMachine : MonoBehaviour
     private List<State> _states;
     private State _currentState;
 
-    public Vector2 Target { get; private set; }
-
     public void Initialize(Movement movement, Health health)
     {
         if (movement == null)
@@ -23,32 +21,31 @@ public class UnitStateMachine : MonoBehaviour
             new WaitingState(),
             new MoveState(movement, this),
             new AttackState(health),
-            new CollectionResources()
+            new CollectionResources(movement,this)
         };
     }
 
     public void Wait()
     {
-        ChangeState<WaitingState>(Vector2.zero);
+        ChangeState<WaitingState>(Vector2.zero, null);
     }
 
     public void Move(Vector2 point)
     {
-        ChangeState<MoveState>(point);
+        ChangeState<MoveState>(point, null);
     }
 
     public void AttackState(Vector2 point)
     {
-        ChangeState<AttackState>(point);
+        ChangeState<AttackState>(point, null);
     }
 
-    public void CollectingResources(Vector2 point)
+    public void CollectingResources(Vector2 point, Resours resours)
     {
-        ChangeState<CollectionResources>(point);
+        ChangeState<CollectionResources>(point, resours);
     }
 
-
-    private void ChangeState<T>(Vector2 point) where T : State
+    private void ChangeState<T>(Vector2 point, Resours resours) where T : State
     {
 
         if (_currentState != null)
@@ -57,7 +54,7 @@ public class UnitStateMachine : MonoBehaviour
         }  
 
         _currentState = _states.FirstOrDefault(state => state is T);
-        _currentState.Enter(point);
+        _currentState.Enter(point, resours);
     }
 }
 
