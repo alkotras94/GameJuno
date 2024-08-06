@@ -11,9 +11,9 @@ public class CollectionResources : State, IHitResources
         _stateMachine = stateMachine;
         _movement = movement;
     }
-    public override void Enter(Vector2 point, Resours resours)
+    public override void Enter(Hit hitData)
     {
-        Visit(resours);
+        Visit(hitData.Resours);
     }
 
     public override void Exit()

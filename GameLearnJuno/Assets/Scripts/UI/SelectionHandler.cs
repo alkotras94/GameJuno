@@ -28,17 +28,12 @@ public class SelectionHandler : IHitVisitor
 
     public void Visit(Ground groundHit, Vector2 target)
     {
-        AddTargetGround(target);
+        _squad.AddTarget(target);
     }
 
     public void Visit(Resours resourcesHit, Vector2 point)
     {
         _squad.TransferUnit(resourcesHit,point);
-    }
-
-    private void AddTargetGround(Vector2 target)
-    {
-        _squad.AddTarget(target);
     }
 }
 

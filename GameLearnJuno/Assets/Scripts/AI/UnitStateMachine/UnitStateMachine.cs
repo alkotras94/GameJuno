@@ -27,25 +27,25 @@ public class UnitStateMachine : MonoBehaviour
 
     public void Wait()
     {
-        ChangeState<WaitingState>(Vector2.zero, null);
+        ChangeState<WaitingState>(null);
     }
 
-    public void Move(Vector2 point)
+    public void Move(Hit hitData)
     {
-        ChangeState<MoveState>(point, null);
+        ChangeState<MoveState>(hitData);
     }
 
-    public void AttackState(Vector2 point)
+    public void AttackState(Hit hitData)
     {
-        ChangeState<AttackState>(point, null);
+        ChangeState<AttackState>(hitData);
     }
 
-    public void CollectingResources(Vector2 point, Resours resours)
+    public void CollectingResources(Hit hitData)
     {
-        ChangeState<CollectionResources>(point, resours);
+        ChangeState<CollectionResources>(hitData);
     }
 
-    private void ChangeState<T>(Vector2 point, Resours resours) where T : State
+    private void ChangeState<T>(Hit hitData) where T : State
     {
 
         if (_currentState != null)
@@ -54,7 +54,7 @@ public class UnitStateMachine : MonoBehaviour
         }  
 
         _currentState = _states.FirstOrDefault(state => state is T);
-        _currentState.Enter(point, resours);
+        _currentState.Enter(hitData);
     }
 }
 

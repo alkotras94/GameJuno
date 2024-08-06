@@ -11,9 +11,9 @@ public class MoveState : State
         _stateMachine = unitStateMachine;
     }
 
-    public override void Enter(Vector2 point, Resours resours)
+    public override void Enter(Hit hitData)
     {
-        _movement.AddTarget(point);
+        _movement.AddTarget(hitData.Target);
         _movement.PointCame += OnPointCame;
     }
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WaitingState : State
 {
-    public override void Enter(Vector2 point, Resours resours)
+    public override void Enter(Hit hitData)
     {
-        Debug.Log("Состояние ожидания");
+        
     }
 
     public override void Exit()
     {
-        Debug.Log("Выход из состояния ожидания");
+        
     }
 }

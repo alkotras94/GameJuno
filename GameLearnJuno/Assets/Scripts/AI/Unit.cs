@@ -28,12 +28,13 @@ public class Unit : MonoBehaviour
 
     public void AddHit(Vector2 target)
     {
-        _stateMachine.Move(target);
+        Hit hitData = new Hit(target, null);
+        _stateMachine.Move(hitData);
     }
 
-    public void TransferStateMachine(Vector2 point, Resours resours)
+    public void TransferStateMachine(Hit hitData)
     {
-        _stateMachine.CollectingResources(point, resours);
+        _stateMachine.CollectingResources(hitData);
     }
  
 }

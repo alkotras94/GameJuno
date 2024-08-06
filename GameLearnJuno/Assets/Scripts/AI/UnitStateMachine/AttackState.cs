@@ -8,7 +8,7 @@ public class AttackState : State
         _health = health;
     }
 
-    public override void Enter(Vector2 point, Resours resours)
+    public override void Enter(Hit hitData)
     {
        
     }

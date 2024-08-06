@@ -43,7 +43,8 @@ public class Squad
     {
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {
-            _selectedUnitRtsList[i].TransferStateMachine(point,resours);
+            Hit hitData = new Hit(point, resours);
+            _selectedUnitRtsList[i].TransferStateMachine(hitData);
         }
     }
 
