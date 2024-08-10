@@ -1,5 +1,6 @@
 using UnityEngine;
 
-public abstract class Resours : MonoBehaviour
+public abstract class Resours : MonoBehaviour, IHitble
 {
+
 }

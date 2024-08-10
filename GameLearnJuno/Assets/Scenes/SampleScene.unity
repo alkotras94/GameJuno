@@ -546,6 +546,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 673225916987727689, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+      propertyPath: _pointCastle
+      value: 
+      objectReference: {fileID: 449046202}
+    - target: {fileID: 1504054297591880332, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+      propertyPath: _transition
+      value: 
+      objectReference: {fileID: 506133324}
     - target: {fileID: 6637568036277486205, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.65
@@ -595,6 +603,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+--- !u!114 &506133324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 244804984914702195, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+  m_PrefabInstance: {fileID: 506133318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cdc63203ea04caf8f20864b6972b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &508551761
 PrefabInstance:
   m_ObjectHideFlags: 0
