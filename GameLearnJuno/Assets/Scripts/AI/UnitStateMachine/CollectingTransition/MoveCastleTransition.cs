@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCastleTransition : Transition
 {
-    [SerializeField] private Transition _nextTransition;
+    [SerializeField] private MoveTransition _moveTransition;
     [SerializeField] private Transform _pointCastle;
     [SerializeField] private Movement _movement;
 
@@ -13,17 +13,20 @@ public class MoveCastleTransition : Transition
     {
         _hitData = hitData;
         _movement.AddTarget(_pointCastle.position);
-        _movement.PointCame += OnCome;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Вошли в колайдер");
+        if (collision.gameObject.TryGetComponent(out Forttres resours))
+        {
+            Debug.Log("MoveCastleTransition");
+            //_movement.StopMovement();
+            _moveTransition.Enter(_hitData);
+        }
+    }
     public override void Exit()
     {
 
-    }
-
-    private void OnCome()
-    {
-        _movement.PointCame -= OnCome;
-        _nextTransition.Enter(_hitData);
     }
 }

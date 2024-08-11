@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3357880296400942526}
   - component: {fileID: 804696542175495668}
   - component: {fileID: 5871489039148285799}
+  - component: {fileID: 3220016656485459637}
   m_Layer: 0
   m_Name: Forttres
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6981773080872933167}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.76, y: 9.18, z: -0.107041225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -101,3 +102,15 @@ MonoBehaviour:
   m_Center: {x: -0.0214746, y: 0.026470184, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &3220016656485459637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981773080872933167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ecc0bac47ec344891ab894b3a4ecf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

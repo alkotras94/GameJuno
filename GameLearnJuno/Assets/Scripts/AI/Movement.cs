@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private float _distanceStop = 2f;
+    [SerializeField] private float _distanceStop = 0.5f;
 
     public event Action PointCame;
 
@@ -22,6 +22,10 @@ public class Movement : MonoBehaviour
         StartCoroutine(CalculateDistance(target));
     }
 
+    public void StopMovement()
+    {
+        _agent.isStopped = true;
+    }
     private IEnumerator CalculateDistance(Vector2 target)
     {
         yield return new WaitUntil(() => Vector2.Distance(gameObject.transform.position, target) <= _distanceStop);

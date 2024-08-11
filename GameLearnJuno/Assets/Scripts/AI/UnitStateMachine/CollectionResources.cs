@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Ссылка на объект не установлена, не понимаю почему
-//Не могу понять откуда выходить из состояния Сбора ресурсов
 public class CollectionResources : State
 {
     private UnitStateMachine _stateMachine;
@@ -17,6 +15,7 @@ public class CollectionResources : State
     }
     public override void Enter(Hit hitData)
     {
+        Debug.Log("CollectionResources");
         _transition.Enter(hitData);
     }
 
