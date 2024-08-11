@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private float _distanceStop = 0.5f;
+    [SerializeField] private float _distanceStop = 2f;
 
     public event Action PointCame;
 
