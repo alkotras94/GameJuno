@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private float _distanceStop = 0.5f;
 
+    private Coroutine _coroutine;
+
     public event Action PointCame;
 
     private void Start()
@@ -19,16 +21,12 @@ public class Movement : MonoBehaviour
     public void AddTarget(Vector2 target)
     {
         _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
-        StartCoroutine(CalculateDistance(target));
-    }
-
-    public void StopMovement()
-    {
-        _agent.isStopped = true;
+        _coroutine = StartCoroutine(CalculateDistance(target));
     }
     private IEnumerator CalculateDistance(Vector2 target)
     {
         yield return new WaitUntil(() => Vector2.Distance(gameObject.transform.position, target) <= _distanceStop);
         PointCame?.Invoke();
+        StopCoroutine(_coroutine);
     }
 }
