@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0d6c4b3771943aea84f0b871409d2f, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
+  <TimeToCollect>k__BackingField: 1
+  <CountResources>k__BackingField: 260

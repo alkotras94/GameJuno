@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e794273432a7c48208f563db287216d6, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
+  <TimeToCollect>k__BackingField: 5
+  <CountResources>k__BackingField: 150

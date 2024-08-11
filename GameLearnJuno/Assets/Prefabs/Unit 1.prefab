@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec758d38ecf6c674aae31353c032925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transition: {fileID: 244804984914702195}
 --- !u!114 &244804984914702195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,8 +603,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextTransition: {fileID: 673225916987727689}
-  _animator: {fileID: 0}
+  _animator: {fileID: 6131363647969726680}
   _timeCollect: 3
+  _nameAnimationCollect: Collect
 --- !u!114 &673225916987727689
 MonoBehaviour:
   m_ObjectHideFlags: 0
