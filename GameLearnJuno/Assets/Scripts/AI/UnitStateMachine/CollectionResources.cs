@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CollectionResources : State
 {
+    [SerializeField] private Transition _transition;
+    [SerializeField] private Detection _detection;
+
     private UnitStateMachine _stateMachine;
     private Movement _movement;
-    private Transition _transition;
+
     public CollectionResources(Movement movement,UnitStateMachine stateMachine, Transition transition)
     {
         _stateMachine = stateMachine;
@@ -16,7 +19,9 @@ public class CollectionResources : State
     public override void Enter(Hit hitData)
     {
         Debug.Log("CollectionResources");
-        _transition.Enter(hitData);
+
+        _detection.Enable();
+        _transition.Enter(hitData, _detection);
     }
 
     public override void Exit()

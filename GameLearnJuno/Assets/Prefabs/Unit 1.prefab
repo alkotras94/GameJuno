@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 5100256605576828427}
   - component: {fileID: 7447490771166037570}
   - component: {fileID: 2587309555395767660}
+  - component: {fileID: 3725451194479396659}
   m_Layer: 0
   m_Name: TriggerCollider
   m_TagString: Untagged
@@ -438,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveCastleTransition: {fileID: 2587309555395767660}
-  _timeCollect: 1
+  _timeCollect: 5
   _unitAnimation: {fileID: 7825056962952163719}
 --- !u!114 &2587309555395767660
 MonoBehaviour:
@@ -455,6 +456,33 @@ MonoBehaviour:
   _moveTransition: {fileID: 5100256605576828427}
   _pointCastle: {fileID: 0}
   _movement: {fileID: 8664529060007307375}
+--- !u!50 &3725451194479396659
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369226803018428196}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5040581425166363789
 GameObject:
   m_ObjectHideFlags: 0

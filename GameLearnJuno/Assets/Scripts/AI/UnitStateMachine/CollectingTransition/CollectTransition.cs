@@ -10,10 +10,12 @@ public class CollectTransition : Transition
 
 
     private Hit _hitData;
+    private Detection _detection;
 
-    public override void Enter(Hit hitData)
+    public override void Enter(Hit hitData, Detection detection)
     {
         _hitData = hitData;
+        _detection = detection;
         _unitAnimation.StartAnimationCollectResources();
         StartCoroutine(Collect());
         Debug.Log("CollectTransition");
@@ -35,6 +37,6 @@ public class CollectTransition : Transition
     {
         yield return new WaitForSeconds(_timeCollect);
 
-        _moveCastleTransition.Enter(_hitData);
+        _moveCastleTransition.Enter(_hitData, _detection);
     }
 }

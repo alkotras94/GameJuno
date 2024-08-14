@@ -8,21 +8,23 @@ public class MoveCastleTransition : Transition
     [SerializeField] private Transform _pointCastle;
     [SerializeField] private Movement _movement;
 
+    private Detection _detection;
     private Hit _hitData;
-    public override void Enter(Hit hitData)
+
+    public override void Enter(Hit hitData, Detection detection)
     {
         _hitData = hitData;
+        _detection = detection;
         _movement.AddTarget(_pointCastle.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Вошли в колайдер");
         if (collision.gameObject.TryGetComponent(out Forttres resours))
         {
             Debug.Log("MoveCastleTransition");
             //_movement.StopMovement();
-            _moveTransition.Enter(_hitData);
+            _moveTransition.Enter(_hitData, _detection);
         }
     }
     public override void Exit()

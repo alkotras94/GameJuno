@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class State
+public abstract class State :  MonoBehaviour
 {
     public abstract void Enter(Hit hitData);
 
