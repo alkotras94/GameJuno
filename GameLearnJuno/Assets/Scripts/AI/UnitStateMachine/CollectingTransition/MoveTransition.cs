@@ -13,22 +13,22 @@ public class MoveTransition : Transition
 
     public override void Enter(Hit hitData, Detection detection)
     {
-        Debug.Log("MoveTransition");
-
         _hitData = hitData;
         _detection = detection;
-        _detection.EnteredTrigger += OnEnteredTrigger;
         _movement.AddTarget(hitData.Target);
+        _detection.EnteredTrigger += OnEnteredTrigger;
     }
 
     public override void Exit()
     {
-
+        _detection.Disable();
+        _collectTransition.Exit();
     }
 
     private void OnEnteredTrigger()
     {
         _collectTransition.Enter(_hitData,_detection);
+        _detection.EnteredTrigger -= OnEnteredTrigger;
     }
 
 

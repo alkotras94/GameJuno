@@ -485,6 +485,14 @@ PrefabInstance:
       propertyPath: _pointCastle
       value: 
       objectReference: {fileID: 449046202}
+    - target: {fileID: 4369226803018428196, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131363647969726680, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6637568036277486205, guid: 7a2eb01f0f0ef4105857ffc5325f64f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.84

@@ -16,27 +16,20 @@ public class CollectTransition : Transition
     {
         _hitData = hitData;
         _detection = detection;
-        _unitAnimation.StartAnimationCollectResources();
         StartCoroutine(Collect());
-        Debug.Log("CollectTransition");
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Resours resours))
-        {
-            _unitAnimation.FinishAnimationCollectResources();
-        }
     }
     public override void Exit()
     {
-
+        _moveCastleTransition.Exit();
     }
 
     private IEnumerator Collect()
     {
+        _unitAnimation.StartAnimationCollectResources();
+
         yield return new WaitForSeconds(_timeCollect);
 
+        _unitAnimation.FinishAnimationCollectResources();
         _moveCastleTransition.Enter(_hitData, _detection);
     }
 }

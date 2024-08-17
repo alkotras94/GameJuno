@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,25 +11,24 @@ public class MoveCastleTransition : Transition
 
     private Detection _detection;
     private Hit _hitData;
+    private CollectionResources _collectionResources;
 
     public override void Enter(Hit hitData, Detection detection)
     {
         _hitData = hitData;
         _detection = detection;
         _movement.AddTarget(_pointCastle.position);
+        _detection.OutTrigger += OnOutTrigger;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Forttres resours))
-        {
-            Debug.Log("MoveCastleTransition");
-            //_movement.StopMovement();
-            _moveTransition.Enter(_hitData, _detection);
-        }
-    }
     public override void Exit()
     {
+        _collectionResources.OutState();
+    }
 
+    public void OnOutTrigger()
+    {
+        _moveTransition.Enter(_hitData, _detection);
+        _detection.OutTrigger -= OnOutTrigger;
     }
 }
