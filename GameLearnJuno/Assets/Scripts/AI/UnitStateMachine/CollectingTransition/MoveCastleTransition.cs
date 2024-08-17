@@ -8,10 +8,12 @@ public class MoveCastleTransition : Transition
     [SerializeField] private MoveTransition _moveTransition;
     [SerializeField] private Transform _pointCastle;
     [SerializeField] private Movement _movement;
+    [SerializeField] private ResourcesFortrres _resourcesFortrres;
 
     private Detection _detection;
     private Hit _hitData;
     private CollectionResources _collectionResources;
+    private int _resours = 1;
 
     public override void Enter(Hit hitData, Detection detection)
     {
@@ -28,6 +30,7 @@ public class MoveCastleTransition : Transition
 
     public void OnOutTrigger()
     {
+        _resourcesFortrres.AddResources(_resours);
         _moveTransition.Enter(_hitData, _detection);
         _detection.OutTrigger -= OnOutTrigger;
     }
