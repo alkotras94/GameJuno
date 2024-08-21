@@ -31,7 +31,7 @@ public class SelectionHandler : IHitVisitor
         _squad.AddTarget(target);
     }
 
-    public void Visit(Resours resourcesHit, Vector2 point)
+    public void Visit(ResoursView resourcesHit, Vector2 point)
     {
         _squad.TransferUnit(resourcesHit,point);
     }
@@ -41,5 +41,5 @@ public interface IHitVisitor
 {
     void Visit(IHitble hit, Vector2 target);
     void Visit(Ground groundHit, Vector2 target);
-    void Visit(Resours resourcesHit, Vector2 target);
+    void Visit(ResoursView resourcesHit, Vector2 target);
 }

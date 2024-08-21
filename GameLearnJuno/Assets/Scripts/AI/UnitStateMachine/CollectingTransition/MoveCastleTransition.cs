@@ -9,29 +9,28 @@ public class MoveCastleTransition : Transition
     [SerializeField] private Transform _pointCastle;
     [SerializeField] private Movement _movement;
     [SerializeField] private ResourcesFortrres _resourcesFortrres;
+    [SerializeField] private DetectionCastle _detectionCastle;
 
-    private Detection _detection;
     private Hit _hitData;
-    private CollectionResources _collectionResources;
     private int _resours = 1;
 
-    public override void Enter(Hit hitData, Detection detection)
+    public override void Enter(Hit hitData)
     {
         _hitData = hitData;
-        _detection = detection;
+        _detectionCastle.Enable();
         _movement.AddTarget(_pointCastle.position);
-        _detection.OutTrigger += OnOutTrigger;
+        _detectionCastle.ExitTrigger += OnExitTrigger;
     }
 
     public override void Exit()
     {
-        _collectionResources.OutState();
+        _detectionCastle.Disable();
     }
 
-    public void OnOutTrigger()
+    public void OnExitTrigger()
     {
         _resourcesFortrres.AddResources(_resours);
-        _moveTransition.Enter(_hitData, _detection);
-        _detection.OutTrigger -= OnOutTrigger;
+        _detectionCastle.ExitTrigger -= OnExitTrigger;
+        _moveTransition.Enter(_hitData);
     }
 }

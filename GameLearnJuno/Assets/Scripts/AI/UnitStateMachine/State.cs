@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public abstract class State
-{
+public abstract class State 
+{ 
     public abstract void Enter(Hit hitData);
 
     public abstract void Exit();

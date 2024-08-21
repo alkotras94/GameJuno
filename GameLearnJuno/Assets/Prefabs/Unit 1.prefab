@@ -457,6 +457,7 @@ MonoBehaviour:
   _moveTransition: {fileID: 5100256605576828427}
   _pointCastle: {fileID: 0}
   _movement: {fileID: 8664529060007307375}
+  _resourcesFortrres: {fileID: 0}
 --- !u!50 &3725451194479396659
 Rigidbody2D:
   serializedVersion: 4
@@ -689,7 +690,6 @@ GameObject:
   - component: {fileID: 7825056962952163719}
   - component: {fileID: 306572720464373416}
   - component: {fileID: 6131363647969726680}
-  - component: {fileID: 127681241842763885}
   m_Layer: 0
   m_Name: Unit 1
   m_TagString: Untagged
@@ -783,6 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec758d38ecf6c674aae31353c032925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transition: {fileID: 0}
+  _detection: {fileID: 0}
 --- !u!114 &7825056962952163719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,20 +864,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &127681241842763885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6788799838337880544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c787da67f2c9f245ac18d0320e029b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _transition: {fileID: 5100256605576828427}
-  _detection: {fileID: 1020130089707507617}
 --- !u!1 &9092343785705102130
 GameObject:
   m_ObjectHideFlags: 0

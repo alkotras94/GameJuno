@@ -7,28 +7,30 @@ public class MoveTransition : Transition
 {
     [SerializeField] private CollectTransition _collectTransition;
     [SerializeField] private Movement _movement;
+    [SerializeField] private DetectionMove _detectionMove;
 
-    private Detection _detection;
     private Hit _hitData;
 
-    public override void Enter(Hit hitData, Detection detection)
+    public override void Enter(Hit hitData)
     {
         _hitData = hitData;
-        _detection = detection;
         _movement.AddTarget(hitData.Target);
-        _detection.EnteredTrigger += OnEnteredTrigger;
+        _detectionMove.EnteredTrigger += OnEnteredTrigger;
     }
 
     public override void Exit()
     {
-        _detection.Disable();
-        _collectTransition.Exit();
+        _detectionMove.Disable();
     }
 
-    private void OnEnteredTrigger()
+    private void OnEnteredTrigger(ResoursView resoursView)
     {
-        _collectTransition.Enter(_hitData,_detection);
-        _detection.EnteredTrigger -= OnEnteredTrigger;
+        if (_hitData.Resours == resoursView)
+        {
+            _collectTransition.Enter(_hitData);
+            _movement.StopMovement();
+            _detectionMove.EnteredTrigger -= OnEnteredTrigger;
+        }
     }
 
 

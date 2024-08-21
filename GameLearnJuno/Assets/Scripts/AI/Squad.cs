@@ -39,7 +39,7 @@ public class Squad
         }
     }
 
-    public void TransferUnit(Resours resours,Vector2 point)
+    public void TransferUnit(ResoursView resours,Vector2 point)
     {
         for (int i = 0; i < _selectedUnitRtsList.Count; i++)
         {

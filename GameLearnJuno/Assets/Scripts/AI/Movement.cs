@@ -23,6 +23,15 @@ public class Movement : MonoBehaviour
         _agent.SetDestination(new Vector3(target.x, target.y, transform.position.z));
         _coroutine = StartCoroutine(CalculateDistance(target));
     }
+    public void StopMovement()
+    {
+        _agent.isStopped = true;
+    }
+
+    public void StartMovement()
+    {
+        _agent.isStopped = false;
+    }
     private IEnumerator CalculateDistance(Vector2 target)
     {
         yield return new WaitUntil(() => Vector2.Distance(gameObject.transform.position, target) <= _distanceStop);

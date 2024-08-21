@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class UnitStateMachine : MonoBehaviour
 {
-    [SerializeField] private Transition _transition;
-    [SerializeField] private Detection _detection;
+    [SerializeField] private ManagementTransition _managementTransition;
 
     private List<State> _states;
     private State _currentState;
@@ -24,7 +23,7 @@ public class UnitStateMachine : MonoBehaviour
             new WaitingState(),
             new MoveState(movement, this),
             new AttackState(health),
-            new CollectionResources(movement,this,_transition, _detection)
+            new CollectionResourcesState(_managementTransition)
         };
     }
 
@@ -45,7 +44,7 @@ public class UnitStateMachine : MonoBehaviour
 
     public void CollectingResources(Hit hitData)
     {
-        ChangeState<CollectionResources>(hitData);
+        ChangeState<CollectionResourcesState>(hitData);
     }
 
     private void ChangeState<T>(Hit hitData) where T : State
