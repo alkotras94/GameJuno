@@ -304,6 +304,8 @@ GameObject:
   - component: {fileID: 2587309555395767660}
   - component: {fileID: 3725451194479396659}
   - component: {fileID: 1020130089707507617}
+  - component: {fileID: 7338063304347329082}
+  - component: {fileID: 2154439818270679392}
   m_Layer: 0
   m_Name: TriggerCollider
   m_TagString: Untagged
@@ -410,9 +412,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.034380883}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.31709033
 --- !u!114 &5100256605576828427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collectTransition: {fileID: 7447490771166037570}
   _movement: {fileID: 8664529060007307375}
+  _detectionMove: {fileID: 1020130089707507617}
 --- !u!114 &7447490771166037570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +445,7 @@ MonoBehaviour:
   _moveCastleTransition: {fileID: 2587309555395767660}
   _timeCollect: 5
   _unitAnimation: {fileID: 7825056962952163719}
+  _movement: {fileID: 8664529060007307375}
 --- !u!114 &2587309555395767660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +462,7 @@ MonoBehaviour:
   _pointCastle: {fileID: 0}
   _movement: {fileID: 8664529060007307375}
   _resourcesFortrres: {fileID: 0}
+  _detectionCastle: {fileID: 7338063304347329082}
 --- !u!50 &3725451194479396659
 Rigidbody2D:
   serializedVersion: 4
@@ -497,6 +502,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd66669625e44d1e8c690360ebce9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7338063304347329082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369226803018428196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53fe250332c0b7843ac79a77e3549dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2154439818270679392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369226803018428196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4123514b0e627a446b986e0b8e42632f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveTransition: {fileID: 5100256605576828427}
+  _collectTransition: {fileID: 7447490771166037570}
+  _moveCastleTransition: {fileID: 2587309555395767660}
 --- !u!1 &5040581425166363789
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,8 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec758d38ecf6c674aae31353c032925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transition: {fileID: 0}
-  _detection: {fileID: 0}
+  _managementTransition: {fileID: 2154439818270679392}
 --- !u!114 &7825056962952163719
 MonoBehaviour:
   m_ObjectHideFlags: 0

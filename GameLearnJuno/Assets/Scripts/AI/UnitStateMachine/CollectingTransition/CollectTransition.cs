@@ -9,17 +9,19 @@ public class CollectTransition : Transition
     [SerializeField] private UnitAnimation _unitAnimation;
     [SerializeField] private Movement _movement;
 
+    private Coroutine _coroutine;
+
 
     private Hit _hitData;
 
     public override void Enter(Hit hitData)
     {
         _hitData = hitData;
-        StartCoroutine(Collect());
+        _coroutine = StartCoroutine(Collect());
     }
     public override void Exit()
     {
-        
+        StopCoroutine(_coroutine);
     }
 
     private IEnumerator Collect()
@@ -31,5 +33,6 @@ public class CollectTransition : Transition
         _unitAnimation.FinishAnimationCollectResources();
         _moveCastleTransition.Enter(_hitData);
         _movement.StartMovement();
+        StopCoroutine(_coroutine);
     }
 }
