@@ -16,6 +16,9 @@ public class CollectTransition : Transition
 
     public override void Enter(Hit hitData)
     {
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
         _hitData = hitData;
         _coroutine = StartCoroutine(Collect());
     }
@@ -32,7 +35,5 @@ public class CollectTransition : Transition
 
         _unitAnimation.FinishAnimationCollectResources();
         _moveCastleTransition.Enter(_hitData);
-        _movement.StartMovement();
-        StopCoroutine(_coroutine);
     }
 }

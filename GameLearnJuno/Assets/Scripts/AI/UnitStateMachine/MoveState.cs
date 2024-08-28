@@ -13,6 +13,7 @@ public class MoveState : State
 
     public override void Enter(Hit hitData)
     {
+        Debug.Log("Вошли в состояние передвижения");
         _movement.AddTarget(hitData.Target);
         _movement.PointCame += OnPointCame;
     }

@@ -6,7 +6,7 @@ public class WaitingState : State
 {
     public override void Enter(Hit hitData)
     {
-        
+        Debug.Log("Вошли в состояние ожидания");
     }
 
     public override void Exit()

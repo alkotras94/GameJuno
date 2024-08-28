@@ -3,20 +3,22 @@ using UnityEngine;
 
 public class DetectionCastle : MonoBehaviour
 {
+    [SerializeField] private Collider2D _collider;
+
     public Action ExitTrigger;
 
     private void Start()
     {
-        enabled = false;
+        _collider.enabled = false;
     }
     public void Enable()
     {
-        enabled = true;
+        _collider.enabled = true;
     }
 
     public void Disable()
     {
-        enabled = false;
+        _collider.enabled = false;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

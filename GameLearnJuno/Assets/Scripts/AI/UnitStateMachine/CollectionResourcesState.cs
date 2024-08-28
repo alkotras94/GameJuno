@@ -12,6 +12,7 @@ public class CollectionResourcesState : State
     }
     public override void Enter(Hit hitData)
     {
+        Debug.Log("Вошли в состояние сбора ресурсов");
         _managementTransition.Enter(hitData);
     }
 

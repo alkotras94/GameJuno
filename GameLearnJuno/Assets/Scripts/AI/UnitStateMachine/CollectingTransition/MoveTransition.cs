@@ -13,6 +13,7 @@ public class MoveTransition : Transition
 
     public override void Enter(Hit hitData)
     {
+        _detectionMove.Enable();
         _hitData = hitData;
         _movement.AddTarget(hitData.Target);
         _detectionMove.EnteredTrigger += OnEnteredTrigger;
