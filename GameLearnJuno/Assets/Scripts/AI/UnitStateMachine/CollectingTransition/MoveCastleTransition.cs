@@ -29,7 +29,7 @@ public class MoveCastleTransition : Transition
 
     public void OnExitTrigger()
     {
-        _resourcesFortrres.AddResources(_resours);
+        _resourcesFortrres.Visit(_hitData.Resours,_resours);
         _detectionCastle.ExitTrigger -= OnExitTrigger;
         _moveTransition.Enter(_hitData);
     }
