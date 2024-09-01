@@ -6,14 +6,19 @@ using UnityEngine;
 public class MoveCastleTransition : Transition
 {
     [SerializeField] private MoveTransition _moveTransition;
-    [SerializeField] private Transform _pointCastle;
     [SerializeField] private Movement _movement;
-    [SerializeField] private ResourcesFortrres _resourcesFortrres;
     [SerializeField] private DetectionCastle _detectionCastle;
 
+    private ResourcesFortrres _resourcesFortrres;
+    private Transform _pointCastle;
     private Hit _hitData;
     private int _resours = 1;
 
+    public void Initialize(ResourcesFortrres resourcesFortrres)
+    {
+        _resourcesFortrres = resourcesFortrres;
+        _pointCastle = _resourcesFortrres.gameObject.transform;
+    }
     public override void Enter(Hit hitData)
     {
         _hitData = hitData;

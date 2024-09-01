@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private GameObject _selectedGameObject;
     [SerializeField] private UnitStateMachine _stateMachine;
     [SerializeField] private Movement _movement;
+    [SerializeField] private ManagementTransition _managementTransition;
 
     private Health _health;
 
-    private void Awake()
+    public void Initialize(ResourcesFortrres resourcesFortrres, UnitData unitData)
     {
-        _health = new Health(_maxHealth);
+        _health = new Health(unitData.MaxHealth);
         _healthBar.Initialize(_health);
+        Enable();
         _stateMachine.Initialize(_movement, _health);
+        _managementTransition.Initialize(resourcesFortrres);
         Diselect();
     }
 
-    private void OnEnable() => _healthBar.Enable();
+    private void Enable() => _healthBar.Enable();
 
     private void OnDisable() => _healthBar.Disable();
 

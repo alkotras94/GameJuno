@@ -7,22 +7,22 @@ public class ResourcesFortrres : MonoBehaviour
     [SerializeField] private FoodUI _foodUI;
     [SerializeField] private GoldUI _goldUI;
 
-    private WoodModel _woodModel;
-    private StoneModel _stoneModel;
-    private FoodModel _foodModel;
-    private GoldModel _goldModel;
+    public WoodModel WoodModel { get; private set; }
+    public StoneModel StoneModel { get; private set; }
+    public FoodModel FoodModel { get; private set; }
+    public GoldModel GoldModel { get; private set; }
 
     private void Awake()
     {
-        _woodModel = new WoodModel();
-        _stoneModel = new StoneModel();
-        _foodModel = new FoodModel();
-        _goldModel = new GoldModel();
+        WoodModel = new WoodModel();
+        StoneModel = new StoneModel();
+        FoodModel = new FoodModel();
+        GoldModel = new GoldModel();
 
-        _woodUI.Initialize(_woodModel);
-        _stoneUI.Initialize(_stoneModel);
-        _foodUI.Initialize(_foodModel);
-        _goldUI.Initialize(_goldModel);
+        _woodUI.Initialize(WoodModel);
+        _stoneUI.Initialize(StoneModel);
+        _foodUI.Initialize(FoodModel);
+        _goldUI.Initialize(GoldModel);
     }
 
     public void Visit(ResoursView resoursView, int value)
@@ -32,16 +32,16 @@ public class ResourcesFortrres : MonoBehaviour
 
     public void Visit(Wood resoursView, int value)
     {
-        _woodModel.Add(value);
+        WoodModel.Add(value);
     }
 
     public void Visit(Stone resoursView, int value)
     {
-        _stoneModel.Add(value);
+        StoneModel.Add(value);
     }
 
     public void Visit(Food resoursView, int value)
     {
-        _foodModel.Add(value);
+        FoodModel.Add(value);
     }
 }

@@ -827,9 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveTransition: {fileID: 2028410088649455211}
-  _pointCastle: {fileID: 0}
   _movement: {fileID: 8664529060007307375}
-  _resourcesFortrres: {fileID: 0}
   _detectionCastle: {fileID: 1049226976765184033}
 --- !u!1 &6788799838337880544
 GameObject:
@@ -887,11 +885,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d2549613b274e19bdeb1a75668afc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
   _healthBar: {fileID: 4359803204270570328}
   _selectedGameObject: {fileID: 4126843952439078627}
   _stateMachine: {fileID: 1504054297591880332}
   _movement: {fileID: 8664529060007307375}
+  _managementTransition: {fileID: 2154439818270679392}
 --- !u!114 &8664529060007307375
 MonoBehaviour:
   m_ObjectHideFlags: 0

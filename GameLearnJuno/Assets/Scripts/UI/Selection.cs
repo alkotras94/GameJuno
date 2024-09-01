@@ -49,6 +49,7 @@ public class Selection : MonoBehaviour
 
         if (raycastHit.collider.TryGetComponent(out IHitble hitble))
         {
+            Debug.Log(_startPosition);
             _selectionHandler.Visit(hitble, _startPosition);
         }
     }
